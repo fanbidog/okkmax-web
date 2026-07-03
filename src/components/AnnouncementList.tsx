@@ -26,7 +26,13 @@ const chev = (rot: boolean) => (
 /** 站点公告:收起态固定矮、不滚、底部淡出;「查看更多消息」展开为固定高可滚框。逐条正文夹 3 行 + 展开阅读全文。 */
 export function AnnouncementList({ announcements }: { announcements: Ann[] }) {
   const t = useT();
-  const items = announcements.map((a) => ({ ...a, text: cleanAnnouncement(a.content || "") }));
+  // 按日期倒序(新公告在前);无日期/解析失败的沉底,同序保持稳定。
+  // 上游数组顺序不可靠:抓取端新增的公告可能 append 在末尾,不排序会把最新公告埋到最底下。
+  const ts = (a: Ann) => { const v = a.date ? Date.parse(a.date) : NaN; return Number.isFinite(v) ? v : -1; };
+  const items = announcements
+    .slice()
+    .sort((x, y) => ts(y) - ts(x))
+    .map((a) => ({ ...a, text: cleanAnnouncement(a.content || "") }));
   const [boxOpen, setBoxOpen] = useState(false);
   const [expanded, setExpanded] = useState<Set<number>>(new Set());
   const [overflow, setOverflow] = useState<Record<number, boolean>>({});
