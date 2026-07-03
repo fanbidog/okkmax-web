@@ -1,0 +1,54 @@
+/* 提交收录页样式 · 作用域 .submit-page(移植自 mock-submit.html) */
+.submit-page .sgrid{display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:start;padding-bottom:80px}
+
+/* 左:为什么提交(干净排版,标题 + 正文 + 加粗)*/
+.submit-page .guide{position:sticky;top:30px}
+.submit-page .intro h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin-bottom:16px}
+.submit-page .intro p{font-size:13px;color:var(--ink2);line-height:1.85;margin-bottom:14px}
+.submit-page .intro p:last-child{margin-bottom:0}
+.submit-page .intro b{color:var(--ink);font-weight:600}
+
+/* 右:扁平表单 */
+.submit-page .sform{display:flex;flex-direction:column;gap:24px}
+.submit-page .row2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.submit-page label.lb{display:block;font-size:14px;font-weight:600;margin-bottom:10px}
+.submit-page label.lb .req{color:var(--accent);margin-left:2px}
+.submit-page label.lb .opt{font-size:12px;color:var(--ink3);font-weight:400;margin-left:6px}
+.submit-page .inp{width:100%;height:46px;border:1px solid var(--line2);border-radius:8px;padding:0 14px;font-size:14px;font-family:inherit;background:var(--surface);color:var(--ink);outline:none}
+.submit-page .inp:focus{border-color:var(--accent)}
+.submit-page .inp::placeholder{color:var(--ink3)}
+.submit-page textarea.inp{height:auto;padding:12px 14px;resize:vertical;line-height:1.6}
+.submit-page .hint{font-size:12.5px;color:var(--ink3);margin-top:9px;line-height:1.5}
+
+/* 自定义勾选(方块 + 橙底白勾),多选/单选共用 */
+.submit-page .opts{display:flex;gap:18px 26px;flex-wrap:wrap;align-items:center;padding-top:2px}
+.submit-page .opt{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-size:14px;color:var(--ink);user-select:none}
+.submit-page .opt .box{width:18px;height:18px;border:1.5px solid var(--line2);border-radius:5px;background:var(--surface);display:flex;align-items:center;justify-content:center;flex:none;transition:.12s}
+.submit-page .opt .box svg{width:12px;height:12px;color:#fff;opacity:0}
+.submit-page .opt.on .box{background:var(--accent);border-color:var(--accent)}
+.submit-page .opt.on .box svg{opacity:1}
+/* 单选组(发票/退款):圆形 + 中心实心点,区别于多选的方框打勾 */
+.submit-page .opt.radio .box{border-radius:50%}
+.submit-page .opt.radio .box svg{display:none}
+.submit-page .opt.radio.on .box{background:var(--surface);border-color:var(--accent)}
+.submit-page .opt.radio.on .box::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.submit-page .other-inp{height:40px;max-width:340px;flex:1 1 200px}
+
+.submit-page .divnote{display:flex;align-items:center;gap:14px;color:var(--ink3);font-size:12.5px;margin-top:8px}
+.submit-page .divnote::before,.submit-page .divnote::after{content:"";height:1px;background:var(--line);flex:1}
+.submit-page .lbrow{display:flex;justify-content:space-between;align-items:baseline}
+.submit-page .genpw{font-size:12.5px;color:var(--accent-d);cursor:pointer;background:none;border:none;font-family:inherit;display:inline-flex;align-items:center;gap:4px}
+.submit-page .submit-row{display:flex;justify-content:flex-end;margin-top:6px}
+.submit-page .ferr{font-size:13px;color:var(--red)}
+
+/* ===== 手机端 ===== */
+@media(max-width:768px){
+  .submit-page .sgrid{grid-template-columns:1fr;gap:24px;padding-bottom:48px}
+  .submit-page .row2{grid-template-columns:1fr}
+  .submit-page .other-inp{max-width:none;flex-basis:100%}   /* 「其他」说明输入独占整行 */
+  /* 介绍不再 sticky(否则像菜单栏粘在顶、表单从下面穿过造成重叠),正常流到表单上方 */
+  .submit-page .guide{position:static}
+  /* 介绍字号在移动端收小 */
+  .submit-page .intro h3{font-size:15px;margin-bottom:10px}
+  .submit-page .intro p{font-size:12.5px;line-height:1.7;margin-bottom:10px}
+}

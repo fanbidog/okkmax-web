@@ -1,0 +1,46 @@
+/* 我的提交 / 我的反馈页(全 .sub-pg 作用域,沿用检测历史页 .hist-pg 的视觉语言)。 */
+.sub-pg{ --org:var(--accent); --amb:var(--amber); --red:var(--red); --grn:var(--ok); }
+.sub-pg .sp-wrap{max-width:1200px;margin:0 auto;padding:0 24px 80px}
+
+.sub-pg .sp-title{font-size:27px;font-weight:600;letter-spacing:-.02em;margin:40px 0 0}
+.sub-pg .sp-note{font-size:12.5px;color:var(--ink3);margin:8px 0 22px;display:flex;align-items:center;gap:6px}
+
+.sub-pg .sp-sec-h{font-size:16px;font-weight:600;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+.sub-pg .sp-sec-h .cnt{font-size:12.5px;color:var(--ink3);font-weight:400}
+
+.sub-pg .sp-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-sm);overflow:hidden}
+
+.sub-pg .sp-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.sub-pg .sp-table thead td{font-size:12.5px;color:var(--ink3);font-weight:500;padding:11px 16px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.sub-pg .sp-table tbody td{padding:15px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--ink);vertical-align:top}
+.sub-pg .sp-table tbody tr:first-child td{border-top:none}
+
+.sub-pg .sp-name{font-size:14.5px;font-weight:600;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sub-pg .sp-url{display:block;font-size:12.5px;color:var(--ink3);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sub-pg .sp-body{color:var(--ink2);line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.sub-pg .c-time{color:var(--ink2);white-space:nowrap;font-size:13.5px}
+
+/* 状态标签 */
+.sub-pg .tag{display:inline-block;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.sub-pg .tag.gray{color:var(--ink2);background:var(--bg2);border:1px solid var(--line2)}
+.sub-pg .tag.green{color:var(--grn);background:var(--ok-50);border:1px solid color-mix(in srgb,var(--ok) 28%,transparent)}
+.sub-pg .tag.amber{color:var(--amb);background:var(--amber-50);border:1px solid color-mix(in srgb,var(--amber) 28%,transparent)}
+.sub-pg .tag.red{color:var(--red);background:var(--red-50);border:1px solid color-mix(in srgb,var(--red) 28%,transparent)}
+
+/* 驳回原因 */
+.sub-pg .sp-reason{margin-top:8px;font-size:13px;color:var(--ink2);line-height:1.6;background:var(--red-50);border:1px solid color-mix(in srgb,var(--red) 28%,transparent);border-radius:8px;padding:8px 11px}
+.sub-pg .sp-reason b{color:var(--red);font-weight:600;margin-right:4px}
+
+/* 空态 */
+.sub-pg .sp-none{text-align:center;color:var(--ink3);font-size:13.5px;padding:40px 16px}
+
+/* ===== 手机端 ===== */
+@media(max-width:768px){
+  .sub-pg .sp-wrap{padding:0 14px 48px}
+  .sub-pg .sp-title{font-size:21px;margin-top:26px}
+  .sub-pg .sp-sec-h{font-size:15px;margin:24px 0 10px}
+  .sub-pg .sp-table thead td,.sub-pg .sp-table tbody td{padding:12px 12px}
+  /* 提交表 3 列原地容纳;反馈表 5 列放不下 → 横向滚动 */
+  .sub-pg .sp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .sub-pg .sp-fb{min-width:600px}
+}

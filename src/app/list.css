@@ -1,0 +1,75 @@
+/* 榜单 /list 页面专属样式 — 原样移植自 mockup-list-saas.html 的 <style> */
+/* 与 relay-theme 撞名的(如 .st)以 mockup 值为准,后加载覆盖 */
+.h1{font-size:24px;font-weight:600;letter-spacing:-.02em;padding-top:16px}
+.h1s{font-size:13.5px;color:var(--ink3);margin-top:5px;margin-bottom:18px}
+.wizard{display:flex;align-items:center;gap:14px;padding:16px 20px;margin-bottom:16px}
+.wizard .ic{width:40px;height:40px;border-radius:11px;background:var(--accent-50);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.wizard .t{flex:1}.wizard .t b{font-size:14px}.wizard .t div{font-size:12px;color:var(--ink3);margin-top:2px}
+.controls{padding:14px 20px;margin-bottom:14px}
+.crow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.crow+.crow{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.clabel{font-size:12px;color:var(--ink3);width:42px;flex-shrink:0}
+.chip{font-size:12.5px;padding:6px 12px;border-radius:20px;border:1px solid var(--line2);color:var(--ink2);cursor:pointer;background:var(--surface)}
+.chip.on{background:var(--accent-50);color:var(--accent-d);border-color:var(--line2);font-weight:600}
+.st{display:flex;align-items:center;gap:11px}
+.nm2{font-weight:600;font-size:14px}.gp2{font-size:11.5px;color:var(--ink3);font-weight:400}
+.lhd{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;font-size:12px;color:var(--ink3)}
+.svc-ic{cursor:default;transition:transform .13s ease}
+.svc-ic:hover{transform:scale(1.18);position:relative;z-index:3}
+
+/* ===== 站点列表卡片(StationListBoard · PC) ===== */
+.slb-row{display:flex;gap:22px;align-items:center}
+.slb-info{width:300px;flex-shrink:0}
+.slb-metrics{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+/* ===== 移动端:搜索行 + 筛选弹层 + 表格(默认隐藏,≤768 才显;PC 保持卡片不变) ===== */
+.slb-mfilter{display:none}
+.slb-mtable{display:none}
+.slb-msearch{flex:1;position:relative}
+.slb-msearch svg{position:absolute;left:12px;top:13px;width:15px;height:15px;color:var(--ink3)}
+.slb-msearch input{width:100%;height:42px;box-sizing:border-box;border:1px solid var(--line2);border-radius:11px;background:var(--bg2);padding:0 12px 0 36px;font-size:14px;font-family:inherit;color:var(--ink);outline:none}
+.slb-fbtn{display:flex;align-items:center;gap:7px;height:42px;padding:0 15px;border:1px solid var(--line2);border-radius:11px;background:var(--surface);font-size:14px;font-weight:500;color:var(--ink);cursor:pointer;white-space:nowrap;font-family:inherit}
+.slb-fbtn .cnt{font-size:11.5px;font-weight:600;color:var(--accent-d);background:var(--accent-50);border-radius:999px;padding:1px 7px}
+.av-iconbtn{padding:0;width:42px;justify-content:center;flex:none}
+.slb-mt{width:100%;border-collapse:collapse;min-width:520px}
+.slb-mt thead td{font-size:11.5px;color:var(--ink3);font-weight:400;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+.slb-mt tbody td{padding:13px 14px;border-bottom:1px solid var(--line);font-size:14px;color:var(--ink);white-space:nowrap;vertical-align:middle}
+.slb-mt tbody tr:last-child td{border-bottom:none}
+.slb-mt tbody tr:active{background:var(--bg2)}
+.slb-mt-st{display:flex;align-items:center;gap:11px}
+.slb-mt-logo{width:30px;height:30px;border-radius:50%;flex:none;object-fit:cover;background:var(--bg2);display:flex;align-items:center;justify-content:center;color:var(--ink2);font-weight:700;font-size:13px}
+.slb-mt-nm{font-weight:600;font-size:14px;color:var(--ink)}
+.slb-ov{position:fixed;inset:0;background:rgba(20,12,8,.42);z-index:40}
+.slb-sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--surface);border-radius:22px 22px 0 0;box-shadow:0 -12px 40px -12px rgba(20,12,8,.3);max-height:86vh;overflow-y:auto;padding:8px 20px 24px}
+.slb-grip{width:38px;height:4px;border-radius:999px;background:var(--line2);margin:6px auto 14px}
+.slb-sheet-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.slb-sheet-h .t{font-size:17px;font-weight:700;color:var(--ink)}
+.slb-sheet-h .rst{font-size:13px;color:var(--ink3);cursor:pointer}
+.slb-grp{padding:16px 0;border-top:1px solid var(--line)}
+.slb-grp:first-of-type{border-top:none}
+.slb-grp-l{font-size:12.5px;color:var(--ink3);margin-bottom:10px}
+.slb-chips{display:flex;flex-wrap:wrap;gap:8px}
+.slb-ch{font-size:12.5px;padding:6px 12px;border-radius:9px;border:1px solid var(--line2);color:var(--ink2);background:var(--surface);cursor:pointer;font-family:inherit}
+.slb-ch.on{background:var(--accent-50);color:var(--accent-d);border-color:var(--line2);font-weight:600}
+.slb-apply{width:100%;height:48px;margin-top:18px;border:none;border-radius:12px;background:var(--accent);color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+
+@media(max-width:768px){
+  .slb-pcfilter{display:none !important}
+  .slb-cards{display:none}
+  .slb-mfilter{display:flex;gap:10px;margin-bottom:16px}
+  .slb-mtable{display:block}
+}
+
+/* 分类徽章:浅色保留原色,暗色用低透明度底+提亮字 */
+.slb-tag{font-size:11px;padding:3px 9px;border-radius:7px;background:var(--bg2);color:var(--ink2)}
+.slb-tag.t-rich{background:#eeedfe;color:#534ab7}
+.slb-tag.t-eco{background:#eaf3de;color:#3b6d11}
+.slb-tag.t-doc{background:#e6f1fb;color:#185fa5}
+[data-theme="dark"] .slb-tag.t-rich{background:rgba(127,119,221,.2);color:#a59bf0}
+[data-theme="dark"] .slb-tag.t-eco{background:rgba(99,153,34,.22);color:#9fc463}
+[data-theme="dark"] .slb-tag.t-doc{background:rgba(55,138,221,.22);color:#6aa9e8}
+@media(prefers-color-scheme:dark){
+  [data-theme="system"] .slb-tag.t-rich{background:rgba(127,119,221,.2);color:#a59bf0}
+  [data-theme="system"] .slb-tag.t-eco{background:rgba(99,153,34,.22);color:#9fc463}
+  [data-theme="system"] .slb-tag.t-doc{background:rgba(55,138,221,.22);color:#6aa9e8}
+}

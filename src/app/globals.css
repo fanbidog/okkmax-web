@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  /* 背景/前景跟随 relay-theme 的 data-theme token(明/暗统一来源),
+     不再用 prefers-color-scheme 写死,避免与主题切换冲突 */
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  /* clip 只裁横向溢出,不建立滚动容器 → 不破坏 html 上的 sticky 导航、不卡顿 */
+  overflow-x: clip;
+}

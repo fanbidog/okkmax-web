@@ -1,0 +1,13 @@
+-- AlterTable
+ALTER TABLE "Channel" ADD COLUMN     "avail" DOUBLE PRECISION,
+ADD COLUMN     "purity" DOUBLE PRECISION,
+ADD COLUMN     "speed" DOUBLE PRECISION;
+
+-- AlterTable
+ALTER TABLE "Station" ADD COLUMN     "availIndex" DOUBLE PRECISION,
+ADD COLUMN     "compositeScore" DOUBLE PRECISION,
+ADD COLUMN     "purityIndex" DOUBLE PRECISION,
+ADD COLUMN     "purityTier" TEXT,
+ADD COLUMN     "rank" INTEGER,
+ADD COLUMN     "scoredAt" TIMESTAMP(3),
+ADD COLUMN     "speedIndex" DOUBLE PRECISION;

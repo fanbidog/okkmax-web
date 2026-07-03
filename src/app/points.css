@@ -1,0 +1,71 @@
+/* 积分页样式 · 移植自 mock-points.html,全部作用域在 .pts-root 下(避让全局 .ptab 等) */
+.pts-root .pbanner{position:relative;overflow:hidden;margin:30px 0 0;border-radius:20px;background:linear-gradient(120deg,#fde7da 0%,#fdf1ec 48%,#fbe3d4 100%);border:1px solid var(--line2);padding:32px 36px;display:flex;align-items:center;justify-content:space-between}
+.pts-root .pbanner::after{content:"";position:absolute;right:-40px;top:-60px;width:320px;height:320px;background:radial-gradient(circle, rgba(224,81,43,.10), transparent 62%);pointer-events:none}
+.pts-root .pb-l{display:flex;align-items:center;gap:20px;z-index:1}
+.pts-root .pb-av{width:84px;height:84px;border-radius:50%;border:3px solid var(--surface);box-shadow:var(--sh-sm);object-fit:cover;flex:none;background:var(--surface)}
+.pts-root .pb-name{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.pts-root .pb-sub{font-size:13px;color:var(--ink2);margin-top:6px}
+.pts-root .pb-r{display:flex;align-items:flex-start;z-index:1;text-align:right}
+.pts-root .pb-stat .k{font-size:13px;color:var(--ink2);margin-bottom:6px}
+.pts-root .pb-stat .v{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1;color:var(--accent-d)}
+
+.pts-root .ptabs{display:flex;align-items:center;gap:28px;margin:26px 0 4px;border-bottom:1px solid var(--line)}
+.pts-root .ptab{padding:12px 2px;font-size:15px;color:var(--ink2);cursor:pointer;border-bottom:2px solid transparent;font-weight:500;user-select:none;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.pts-root .ptab.on{color:var(--ink);font-weight:600;border-bottom-color:var(--accent)}
+.pts-root .prefresh{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink3)}
+.pts-root .prefresh button{color:var(--accent-d);background:none;border:none;font-family:inherit;font-size:13px;cursor:pointer;font-weight:500;display:inline-flex;align-items:center;gap:4px}
+.pts-root .prefresh svg{width:14px;height:14px}
+.pts-root .prefresh svg.spin{animation:pts-spin .7s linear}
+@keyframes pts-spin{to{transform:rotate(360deg)}}
+
+.pts-root .psec{margin-top:30px}
+.pts-root .psec-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.pts-root .psec-t{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.pts-root .psec-t .cnt{font-size:13px;color:var(--ink3);font-weight:400;margin-left:8px}
+.pts-root .pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pts-root .ptask{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-sm);padding:18px 20px;display:flex;flex-direction:column;min-height:150px}
+.pts-root .ptask:hover{box-shadow:var(--sh)}
+.pts-root .pt-t{font-size:15.5px;font-weight:600}
+.pts-root .pt-d{font-size:13px;color:var(--ink3);line-height:1.6;margin-top:9px;flex:1}
+.pts-root .pt-foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
+.pts-root .pt-pts{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:var(--ink)}
+.pts-root .pt-go{font-size:13.5px;font-weight:600;color:var(--accent);text-decoration:none;cursor:pointer;white-space:nowrap;background:none;border:none;font-family:inherit;padding:0}
+.pts-root .pt-go.done{color:var(--ink3);font-weight:500;cursor:default}
+@media(max-width:1080px){.pts-root .pgrid{grid-template-columns:repeat(2,1fr)}}
+
+.pts-root .plog{display:flex;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh-sm);padding:20px 26px;margin-bottom:12px}
+.pts-root .pl-date{font-size:14px;color:var(--ink2);width:200px;flex:none;font-variant-numeric:tabular-nums}
+.pts-root .pl-reason{font-size:14px;color:var(--ink);flex:1;min-width:0}
+.pts-root .pl-pts{display:inline-flex;align-items:center;gap:9px;width:64px;justify-content:flex-start;font-size:15.5px;font-weight:600;color:var(--accent-d);flex:none}
+.pts-root .pl-pts.neg{color:var(--ink3)}
+.pts-root .pempty{padding:96px 0 110px;text-align:center}
+.pts-root .pempty .ico{width:60px;height:60px;border-radius:16px;margin:0 auto;display:flex;align-items:center;justify-content:center;background:var(--accent-50);color:var(--accent)}
+.pts-root .pempty .ico svg{width:30px;height:30px}
+.pts-root .pempty .t{font-size:17px;font-weight:600;color:var(--ink);margin-top:18px}
+.pts-root .plist-empty{padding:60px 0;text-align:center;color:var(--ink3);font-size:14px}
+
+/* ===== 手机端 ===== */
+@media(max-width:768px){
+  /* 横幅收紧:头像/名字/积分数缩档,放不下时换行(当前积分绝不隐藏) */
+  .pts-root .pbanner{padding:22px 18px;flex-wrap:wrap;gap:16px}
+  .pts-root .pb-av{width:60px;height:60px}
+  .pts-root .pb-name{font-size:21px}
+  .pts-root .pb-stat .v{font-size:28px}
+  /* 标签行横滑保证三个 tab 都在;刷新提示文案(冗余)隐藏,刷新按钮保留 */
+  .pts-root .ptabs{gap:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .pts-root .prefresh span{display:none}
+  /* 明细行重排:理由+积分一行,时间戳独占下一行,字段全可见 */
+  .pts-root .plog{padding:14px 16px;flex-wrap:wrap}
+  .pts-root .pl-date{width:100%;order:2;font-size:12px}
+  .pts-root .pl-reason{order:1}
+  .pts-root .pl-pts{order:1}
+}
+@media(max-width:480px){
+  .pts-root .pgrid{grid-template-columns:1fr}
+}
+
+/* 暗色:横幅浅暖渐变 → 深暖渐变,保证其上浅色文字可读 */
+[data-theme="dark"] .pts-root .pbanner{background:linear-gradient(120deg,#2b211b 0%,#241f23 48%,#2a231d 100%)}
+@media(prefers-color-scheme:dark){
+  [data-theme="system"] .pts-root .pbanner{background:linear-gradient(120deg,#2b211b 0%,#241f23 48%,#2a231d 100%)}
+}

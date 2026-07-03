@@ -1,0 +1,166 @@
+/* 结果页 + 等待页样式(移植自 mock-result2.html / mock-loading.html,作用域 .res)。
+   品牌 token 取自 relay-theme.css;tone = 按档变色(官方橙 / 混合琥珀 / 存疑红)。 */
+.res{
+  --tone: var(--accent); --tone-d: var(--accent-d); --tone-50: var(--accent-50);
+  --ok:#1d9e75; --ok-50:rgba(29,158,117,.16);
+  width:100%; max-width:1200px; margin:0 auto; padding:28px 28px 56px;
+  display:flex; flex-direction:column; gap:16px;
+  font-variant-numeric:tabular-nums; letter-spacing:-.01em;
+}
+.res .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-sm)}
+.res .icon{flex:none}
+
+/* 顶部:面包屑 + 操作 */
+.res .topbar{display:flex;align-items:center;gap:26px;padding:2px;flex-wrap:wrap}
+/* 注:relay-theme 有全局 .crumb{padding:38px 0 6px}、detail.css 有 .acts{padding},必须显式清零 */
+.res .crumb{display:flex;align-items:center;gap:7px;font-size:13.5px;padding:0}
+.res .crumb a{color:var(--ink3);text-decoration:none}.res .crumb a:hover{color:var(--ink2)}
+.res .crumb .sep{color:var(--line2);display:flex}
+.res .crumb .cur{color:var(--ink);font-weight:600}
+.res .acts{margin-left:auto;display:flex;gap:8px;padding:0}
+.res .btn{height:38px;padding:0 15px;border-radius:10px;font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:7px;cursor:pointer;border:1px solid var(--line2);background:var(--surface);color:var(--ink2)}
+.res .btn:hover{background:var(--bg2)}
+
+/* 头部卡 */
+.res .head{padding:30px 32px;display:flex;gap:36px;align-items:center;flex-wrap:wrap;background:linear-gradient(120deg,var(--surface) 55%,var(--tone-50));border-color:color-mix(in srgb,var(--tone) 18%,var(--line))}
+.res .sgauge{position:relative;width:132px;height:132px;flex:none}
+.res .sgauge .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.res .sgauge .c .n{font-size:40px;font-weight:800;line-height:1}
+.res .sgauge .c .m{font-size:11.5px;color:var(--ink3)}
+.res .hmain{flex:1;min-width:220px}
+.res .tier{display:flex;align-items:center;gap:11px}
+.res .tier .badge{color:var(--tone);display:flex}
+.res .tier .tn{font-family:var(--font-serif,'Fraunces',serif);font-size:32px;font-weight:600;letter-spacing:-.01em}
+.res .site{display:flex;align-items:center;gap:10px;margin-top:13px}
+.res .site .lg{width:32px;height:32px;border-radius:50%;background:var(--bg2);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--ink2);flex:none;overflow:hidden}
+.res .site .lg img{width:100%;height:100%;object-fit:cover}
+/* 未收录站(无 logo):站名/链接缩进 badge+gap(37px),与「混合渠道」文字左缘对齐 */
+.res .site.nologo{padding-left:37px}
+.res .site .snm{font-size:15px;font-weight:600}
+.res .site .surl{font-size:12px;color:var(--ink3);margin-top:1px}
+.res .hkv{flex:none;padding-left:28px}
+.res .hkv .r{display:flex;gap:20px;font-size:14px;padding:5px 0}
+.res .hkv .r .k{color:var(--ink3);width:64px;flex:none;white-space:nowrap}
+.res .hkv .r .v{font-weight:500;color:var(--ink)}
+.res .hkv .r .v.mono{font-family:ui-monospace,Menlo,monospace}
+
+/* 指标行 */
+.res .metrics{display:flex;padding:22px 30px;flex-wrap:wrap;gap:18px 0}
+.res .metrics .m{flex:1;min-width:96px;text-align:center}
+.res .metrics .m .l{font-size:12px;color:var(--ink3)}
+.res .metrics .m .v{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-top:6px;line-height:1}
+
+/* 视图切换 tab */
+.res .subtabs{display:flex;align-items:center;gap:26px;padding:0 6px;margin-top:4px}
+/* 注:relay-theme.css 有全局 .tab/.tab.on(给 background:ink),这里必须显式覆盖 */
+.res .tab{font-size:15px;font-weight:600;color:var(--ink3);padding:0 0 10px;border-radius:0;background:none;cursor:pointer;border-bottom:2px solid transparent}
+.res .tab.on{color:var(--ink);background:none;border-bottom-color:var(--tone)}
+
+/* 检测表 */
+.res .tbl{padding:6px 24px 12px}
+.res .thead{display:flex;align-items:center;gap:18px;padding:14px 6px;font-size:12.5px;color:var(--ink3);font-weight:500}
+.res .thead .c-dim{width:172px;flex:none}
+.res .thead .c-ct{flex:1;display:flex;justify-content:center}
+.res .thead .c-sc{width:96px;flex:none;text-align:right}
+.res .ctv{width:208px}
+.res .trow{display:flex;align-items:center;gap:18px;padding:15px 6px;border-top:1px solid var(--line)}
+.res .trow .dim{width:172px;flex:none;display:flex;align-items:center;gap:11px;font-size:14.5px;font-weight:600}
+.res .trow .dim .ico{color:var(--ink3)}
+.res .trow .dim .u{position:relative;border-bottom:1px dashed var(--line2);padding-bottom:1px;cursor:help}
+.res .trow .dim .u:hover{border-bottom-color:var(--tone);color:var(--tone-d)}
+.res .trow .dim .u .tip{position:absolute;left:50%;top:calc(100% + 11px);transform:translateX(-50%);width:290px;background:var(--surface);color:var(--ink2);border:1px solid var(--line);font-size:12.5px;font-weight:400;line-height:1.7;padding:12px 15px;border-radius:11px;opacity:0;pointer-events:none;transition:opacity .14s;z-index:20;box-shadow:var(--sh-float);letter-spacing:0;text-align:left}
+.res .trow .dim .u .tip::before{content:"";position:absolute;bottom:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:var(--line)}
+.res .trow .dim .u .tip::after{content:"";position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(1px);border:5px solid transparent;border-bottom-color:var(--surface)}
+.res .trow .dim .u:hover .tip{opacity:1}
+.res .trow .ct{flex:1;display:flex;justify-content:center;font-size:14px;color:var(--ink)}
+.res .trow .sc{width:96px;flex:none;text-align:right;font-size:15px}
+.res .trow .sc b{color:var(--tone);font-weight:700;font-size:17px}
+.res .trow .sc b.fail{color:var(--red)}
+.res .trow .sc .den{color:var(--ink3)}
+.res .trow .sc.muted{color:var(--ink3)}
+.res .trow.skip .dim,.res .trow.skip .ct{color:var(--ink3)}
+
+/* 原始服务器响应:复用检测表 thead/trow;值列(rawct)左起对齐「检测内容」居中块(208px) */
+.res .rawrow{align-items:flex-start}
+/* 值左起对齐「检测内容」208px 居中块:rawct 与 .ct 同宽(都 flex:1+96sc),
+   但 % padding 按父级(trow)算,故换算成 calc(50% - 256px)(=(trow-512)/2,= (rawct-208)/2) */
+.res .rawct{flex:1;font-size:14px;color:var(--ink);padding-left:calc(50% - 256px);word-break:break-word;line-height:1.55}
+.res .rawcth{flex:1;padding-left:calc(50% - 256px)}
+.res .trow.skip .rawct{color:var(--ink3)}
+.res .subtabs .rawcopy{margin-left:auto;height:32px;padding:0 12px;border-radius:9px;font-size:13px;font-weight:500;color:var(--ink2);border:1px solid var(--line2);background:var(--surface);display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.res .subtabs .rawcopy:hover{background:var(--bg2)}
+
+/* 收录条 + 脚注 */
+.res .rec{display:flex;align-items:center;gap:13px;padding:16px 22px;font-size:13.5px}
+.res .rec .ico{color:var(--tone)}
+.res .rec .t{flex:1}.res .rec .t b{font-weight:600}
+.res .rec a{color:var(--tone-d);font-weight:600;text-decoration:none}
+.res .foot{text-align:center;font-size:12px;color:var(--ink3);padding:6px 0}
+
+/* ===== 等待页(填充式骨架:整页骨架 → done 时整体换成结果)===== */
+@keyframes res-rot{to{transform:rotate(360deg)}}
+/* 圆环转圈弧(渐变、慢、绕圆心) */
+.res .sgauge .arc{transform-box:fill-box;transform-origin:center;animation:res-rot 1.4s linear infinite}
+/* 状态行:字体/颜色与检测维度名一致 */
+.res .wstat{font-size:14.5px;font-weight:600;color:var(--ink)}
+/* 骨架占位 shimmer */
+.res .sk{position:relative;overflow:hidden;background:var(--bg2);border-radius:6px;display:inline-block;vertical-align:middle}
+.res .sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);animation:res-shimmer 1.25s infinite}
+@keyframes res-shimmer{to{transform:translateX(100%)}}
+.res .tab.dis{color:var(--line2)}
+
+/* 错误态 */
+.res .err{padding:32px;text-align:center}
+.res .err .t{font-size:16px;font-weight:600;color:var(--red)}
+.res .err .d{font-size:13px;color:var(--ink3);margin-top:8px;word-break:break-word}
+
+/* 超时/卡死态 */
+.res .timeout{padding:40px 32px;text-align:center}
+.res .timeout .to-ic{width:72px;height:72px;border-radius:50%;border:6px solid var(--bg2);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--accent-d)}
+.res .timeout .t{font-size:19px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.res .timeout .d{font-size:14px;color:var(--ink2);line-height:1.65;margin:10px auto 0;max-width:430px}
+.res .timeout .btns{display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap}
+.res .timeout .b-wait{font:inherit;font-size:13.5px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--line2);border-radius:10px;padding:10px 20px;cursor:pointer}
+.res .timeout .b-wait:hover{background:var(--bg2)}
+.res .timeout .b-home{font:inherit;font-size:13.5px;font-weight:600;color:#fff;background:var(--accent);border:none;border-radius:10px;padding:10px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.res .timeout .b-home:hover{background:var(--accent-d)}
+
+/* ===== 手机端 ===== */
+@media(max-width:768px){
+  .res{padding:16px 14px 48px;gap:14px}
+  .res .topbar{gap:12px}
+  /* 头卡:仅收紧内边距;仪表/标题字号与 PC 一致(缩了圆环会和居中数字错位) */
+  .res .head{padding:22px 18px;gap:16px 22px}
+  /* 官方渠道+站点(hmain)始终在圆环右侧:最小宽收到刚好容纳「官方渠道」(原 220 在窄屏会整块掉到圆环下方;0 又会被压成一字一行)。hmain flex:1 占满首行 → 检测时间那块(hkv)落到第二行 */
+  .res .hmain{min-width:140px}
+  /* 检测时间/模型/Key 缩进 16px,与可见橙弧左缘对齐(弧在仪表盒内缩 16,文字在盒左会偏左) */
+  .res .hkv{padding-left:16px}
+  /* 指标:隐藏「检测请求数」,其余 2×2;两列各自左对齐(上下行左缘一致),整体带左缩进留白 */
+  .res .metrics{display:grid;grid-template-columns:1fr 1fr;justify-items:start;padding:20px 14px;row-gap:18px}
+  .res .metrics .m{flex:none;min-width:0;text-align:left;padding-left:32px}
+  .res .metrics .m:nth-child(5){display:none}
+  .res .metrics .m .v{font-size:20px}
+  /* 检测报告:维持三列单行 —— 维度名左 / 检测内容居中 / 得分(含跳过的「—」)右 */
+  .res .tbl{padding:4px 14px 10px}
+  .res .thead{gap:10px;padding:13px 4px}
+  /* 维度名列固定宽 → 各行「检测内容」列起点一致、与表头对齐;检测内容改左对齐(居中会因长短不一显得歪) */
+  .res .thead .c-dim{width:144px;flex:none}
+  .res .thead .c-ct{justify-content:flex-start;padding-left:30px}
+  .res .thead .c-ct .ctv{width:auto}
+  .res .thead .c-sc{width:auto}
+  .res .trow{gap:10px;padding:13px 4px}
+  .res .trow .dim{width:144px;flex:none}
+  .res .trow .ct{flex:1;min-width:0;justify-content:flex-start;padding-left:30px}
+  .res .trow .ct .ctv{width:auto}
+  .res .trow .sc{width:auto;flex:none}
+  /* 原始响应:维度名在上,响应值在下(整宽缩进);隐藏「原始响应值」表头列 */
+  .res .thead .rawcth{display:none}
+  .res .trow.rawrow{flex-wrap:wrap}
+  .res .trow.rawrow .dim{flex:1 0 100%}
+  .res .trow.rawrow .rawct{flex:1 0 100%;padding-left:30px}
+  /* 等待页骨架是固定宽(sk(180) 等),窄列会溢出 → 限制不超容器 */
+  .res .sk{max-width:100%}
+  /* tooltip:从页面左边出发(.u 在 x≈62,负偏移把弹层拉到页边 x14),固定宽度不超屏;箭头仍指向词 */
+  .res .trow .dim .u .tip{left:-48px;transform:none;width:260px;max-width:calc(100vw - 28px)}
+  .res .trow .dim .u .tip::before,.res .trow .dim .u .tip::after{left:52px}
+}

@@ -1,0 +1,55 @@
+/* 检测历史页(全 .hist-pg 作用域,避开全局 .tab/.crumb 等冲突)。设计同 mock-history-page.html。 */
+.hist-pg{ --org:var(--accent); --amb:var(--amber); --red:var(--red); }
+.hist-pg .hp-wrap{max-width:1200px;margin:0 auto;padding:0 24px 80px}
+
+.hist-pg .hp-title{font-size:27px;font-weight:600;letter-spacing:-.02em;margin:40px 0 0}
+.hist-pg .hp-note{font-size:12.5px;color:var(--ink3);margin:8px 0 22px;display:flex;align-items:center;gap:6px}
+
+.hist-pg .hp-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-sm);overflow:hidden}
+.hist-pg .hp-head{display:flex;align-items:center;padding:16px 22px 14px}
+.hist-pg .hp-head .t{font-size:15px;font-weight:600}
+.hist-pg .hp-head .clr{margin-left:auto;font-size:13px;color:var(--ink3);background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit}
+.hist-pg .hp-head .clr:hover{color:var(--red)}
+
+.hist-pg .hp-table{width:100%;border-collapse:collapse}
+.hist-pg .hp-table thead td{font-size:12.5px;color:var(--ink3);font-weight:500;padding:11px 16px;background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hist-pg .hp-table tbody td{padding:15px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--ink)}
+.hist-pg .hp-table tbody tr:first-child td{border-top:none}
+.hist-pg .hp-table tbody tr{cursor:pointer}
+.hist-pg .hp-table tbody tr:hover{background:var(--bg2)}
+
+.hist-pg .col-site{display:flex;align-items:center;gap:11px;min-width:0}
+.hist-pg .col-site .lg{width:30px;height:30px;border-radius:50%;background:var(--bg2);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--ink2);flex:none;overflow:hidden}
+.hist-pg .col-site .lg img{width:100%;height:100%;object-fit:cover}
+.hist-pg .col-site b{font-size:14.5px;font-weight:600;white-space:nowrap}
+
+.hist-pg .score{font-weight:800;font-size:16px}
+.hist-pg .score.org{color:var(--org)} .hist-pg .score.amb{color:var(--amb)} .hist-pg .score.red{color:var(--red)}
+.hist-pg .pend{font-size:13px;color:var(--ink3)}
+.hist-pg .c-model{color:var(--ink)}
+.hist-pg .c-ep{color:var(--ink3);font-size:13px}
+.hist-pg .c-time{color:var(--ink2);white-space:nowrap}
+
+.hist-pg .c-go{width:64px;text-align:center}
+.hist-pg .go-ic{width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink3);border:1px solid var(--line2);background:var(--surface)}
+.hist-pg .hp-table tbody tr:hover .go-ic{color:var(--accent);border-color:var(--accent-50);background:var(--accent-50)}
+
+/* 空态:保留表头,正文一行居中「暂时没有数据」(不可点、无 hover) */
+.hist-pg .hp-table tbody tr.hp-none-row{cursor:default}
+.hist-pg .hp-table tbody tr.hp-none-row:hover{background:none}
+.hist-pg .hp-none{text-align:center;color:var(--ink3);font-size:13.5px;padding:48px 16px}
+
+/* ===== 手机端 ===== */
+@media(max-width:768px){
+  .hist-pg .hp-wrap{padding:0 14px 48px}
+  .hist-pg .hp-title{font-size:21px;margin-top:26px}
+  .hist-pg .hp-note{margin-bottom:16px}
+  .hist-pg .hp-head{padding:14px 16px 12px}
+  /* 隐藏次要的「接口」列(站名已能识别),其余列收紧;放不下时表格横向滚动 */
+  .hist-pg .c-ep{display:none}
+  .hist-pg .hp-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .hist-pg .hp-table{min-width:430px}
+  .hist-pg .hp-table thead td,.hist-pg .hp-table tbody td{padding:12px 12px}
+  .hist-pg .col-site b{font-size:13.5px}
+  .hist-pg .c-go{width:48px}
+}

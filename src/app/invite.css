@@ -1,0 +1,90 @@
+/* 邀请好友弹窗 + 落地页样式(i 前缀,全局唯一) */
+.iov{position:fixed;inset:0;z-index:1100;background:rgba(20,16,12,.66);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:24px;animation:ifade .14s ease}
+@keyframes ifade{from{opacity:0}to{opacity:1}}
+.imodal{width:480px;max-width:100%;background:var(--surface);border-radius:20px;box-shadow:0 4px 14px rgba(28,25,23,.05),0 28px 56px -18px rgba(28,25,23,.3);overflow:hidden;position:relative}
+.iclose{position:absolute;top:16px;right:16px;color:rgba(0,0,0,.42);cursor:pointer;z-index:2;background:none;border:none;padding:2px;display:inline-flex}
+.iclose:hover{color:var(--ink)}
+
+.ihead{height:158px;background:radial-gradient(120% 100% at 50% 0%,#fef0e6 0%,#fbe7d6 60%,#f7ddc7 100%);display:flex;align-items:center;justify-content:center}
+.iill{position:relative;width:128px;height:104px}
+.igift{position:absolute;left:30px;top:14px;width:68px;height:68px;color:var(--accent)}
+.icoin{position:absolute;border-radius:50%;background:linear-gradient(135deg,#ffd089,#f59e0b);box-shadow:0 2px 5px rgba(245,158,11,.4);display:flex;align-items:center;justify-content:center;color:#fff}
+.icoin svg{width:55%;height:55%}
+.ic1{width:34px;height:34px;left:84px;top:46px}
+.ic2{width:24px;height:24px;left:6px;top:54px}
+.ispk{position:absolute;color:#f7a23b}
+.ispk svg{width:100%;height:100%}
+.is1{width:16px;height:16px;left:104px;top:8px}
+.is2{width:11px;height:11px;left:18px;top:18px}
+
+.ibody{padding:6px 30px 28px;text-align:center}
+.ibody h3{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-top:14px}
+.idesc{font-size:12.5px;color:var(--ink3);line-height:1.7;margin:10px auto 0;max-width:380px}
+.idesc b{color:var(--accent-d)}
+
+.ifld{text-align:left;margin-top:22px}
+.ifld .ilb{font-size:12.5px;color:var(--ink3);margin-bottom:8px}
+.icode-row{display:flex;align-items:center;gap:10px}
+.icode-row .icode{font-size:22px;font-weight:700;letter-spacing:.04em}
+.icode-row .icpi{color:var(--ink3);cursor:pointer;display:inline-flex;background:none;border:none;padding:2px}
+.icode-row .icpi:hover{color:var(--accent-d)}
+.ilinkbox{display:flex;align-items:center;gap:10px;margin-top:8px}
+.ilinkbox input{flex:1;height:46px;border:1px solid var(--line2);border-radius:10px;padding:0 14px;font-size:13.5px;color:var(--ink2);font-family:inherit;background:var(--bg2);outline:none;min-width:0}
+.ilinkbox .icp{background:var(--ink);color:var(--bg);border:none;border-radius:10px;height:46px;padding:0 22px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.ilinkbox .icp:hover{opacity:.9}
+
+.idot{border:none;border-top:1px dashed var(--line2);margin:24px 0 0}
+.ihist-head{display:flex;align-items:center;justify-content:space-between;margin-top:22px}
+.ihist-head .it{font-size:13.5px;font-weight:600}
+.ihist-head .iall{font-size:12.5px;color:var(--ink3);cursor:pointer;background:none;border:none;font-family:inherit;display:inline-flex;align-items:center;gap:3px}
+.itiles{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:14px;margin-top:12px;overflow:hidden;background:var(--bg2)}
+.itile{padding:18px 0;text-align:center}
+.itile+.itile{border-left:1px solid var(--line)}
+.itile .iv{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.itile .iv.a{color:var(--accent-d)}
+.itile .ik{font-size:12px;color:var(--ink3);margin-top:5px}
+.irecs{margin-top:12px;border:1px solid var(--line);border-radius:14px;max-height:200px;overflow-y:auto}
+.irec{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font-size:13px}
+.irec+.irec{border-top:1px solid var(--line)}
+.irec .rn{font-weight:500}
+.irec .rt{color:var(--ink3);font-variant-numeric:tabular-nums}
+.irecs-empty{padding:28px 0;text-align:center;color:var(--ink3);font-size:13px}
+
+/* 落地页(大气版)*/
+.iland{position:relative;max-width:720px;margin:0 auto;text-align:center;padding:56px 24px 96px}
+.iland::before{content:"";position:absolute;left:50%;top:-20px;transform:translateX(-50%);width:880px;height:500px;background:radial-gradient(closest-side,var(--accent-50),rgba(253,241,236,0) 70%);z-index:-1;pointer-events:none}
+.iland-art{position:relative;width:176px;height:142px;margin:0 auto}
+.iland-art .igift{position:absolute;left:44px;top:18px;width:88px;height:88px;color:var(--accent)}
+.iland-art .icoin{position:absolute;border-radius:50%;background:linear-gradient(135deg,#ffd089,#f59e0b);box-shadow:0 3px 7px rgba(245,158,11,.4);display:flex;align-items:center;justify-content:center;color:#fff}
+.iland-art .icoin svg{width:55%;height:55%}
+.la-c1{width:46px;height:46px;left:116px;top:62px}
+.la-c2{width:32px;height:32px;left:8px;top:74px}
+.iland-art .ispk{position:absolute;color:#f7a23b}
+.iland-art .ispk svg{width:100%;height:100%}
+.la-s1{width:22px;height:22px;left:142px;top:10px}
+.la-s2{width:15px;height:15px;left:24px;top:26px}
+.iland h1{font-size:32px;font-weight:700;letter-spacing:-.025em;margin-top:10px;line-height:1.2}
+.iland .who{color:var(--accent-d)}
+.iland-reward{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--accent-50);border-radius:999px;padding:8px 18px;font-size:14px;font-weight:600;color:var(--accent-d);margin-top:20px;box-shadow:var(--sh-sm)}
+.iland-reward svg{width:16px;height:16px}
+.iland p{font-size:15px;color:var(--ink2);line-height:1.75;margin:18px auto 0;max-width:500px}
+.iland .reg{margin-top:30px;background:var(--accent);color:#fff;border:none;border-radius:12px;padding:15px 56px;font-size:16px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 10px 24px -8px rgba(224,81,43,.55);transition:.15s}
+.iland .reg:hover{background:var(--accent-d)}
+.iland-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px;text-align:left}
+.iland-feats .feat{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh-sm);padding:20px 18px}
+.iland-feats .fic{width:38px;height:38px;border-radius:11px;background:var(--accent-50);color:var(--accent-d);display:flex;align-items:center;justify-content:center}
+.iland-feats .fic svg{width:20px;height:20px}
+.iland-feats .ft{font-size:14.5px;font-weight:600;margin-top:13px}
+.iland-feats .fd{font-size:12.5px;color:var(--ink2);line-height:1.65;margin-top:6px}
+.iland .tip{font-size:12.5px;color:var(--ink3);margin-top:24px}
+@media(max-width:680px){.iland-feats{grid-template-columns:1fr}}
+
+@media(max-width:480px){
+  .ibody{padding:6px 20px 24px}
+  .ihead{height:138px}
+  .icode-row .icode{font-size:20px}
+}
+
+/* 暗色:邀请弹窗/落地页头图浅暖渐变 → 深暖渐变 */
+[data-theme="dark"] .ihead,[data-theme="dark"] .iland-art{background:radial-gradient(120% 100% at 50% 0%,#33251d 0%,#2a201f 60%,#241f23 100%)}
+@media(prefers-color-scheme:dark){[data-theme="system"] .ihead,[data-theme="system"] .iland-art{background:radial-gradient(120% 100% at 50% 0%,#33251d 0%,#2a201f 60%,#241f23 100%)}}

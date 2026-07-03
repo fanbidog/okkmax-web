@@ -1,0 +1,57 @@
+/* 登录/注册弹窗(auth- 前缀,全局唯一)*/
+.auth-ov{position:fixed;inset:0;z-index:100;background:rgba(20,16,12,.66);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:24px;overflow-y:auto;animation:authFade .16s ease}
+@keyframes authFade{from{opacity:0}to{opacity:1}}
+
+/* 顶部锚定:注册多一行往下扩,顶边不动 */
+.auth-card{width:480px;max-width:100%;margin-top:max(24px,calc(50vh - 300px));background:var(--surface);border-radius:20px;padding:34px 44px 30px;position:relative;box-shadow:0 4px 14px rgba(28,25,23,.05),0 28px 56px -18px rgba(28,25,23,.3);opacity:0;transform:translateY(18px);animation:authPop .42s cubic-bezier(.22,.61,.36,1) .04s forwards}
+@keyframes authPop{to{opacity:1;transform:translateY(0)}}
+
+.auth-close{position:absolute;right:16px;top:14px;background:none;border:none;color:var(--ink3);cursor:pointer;padding:4px;display:inline-flex;border-radius:8px;transition:.15s}
+.auth-close:hover{color:var(--ink);background:var(--bg2)}
+
+.auth-head{text-align:center;margin-bottom:20px}
+.auth-head .t{font-size:21px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.auth-head .s{font-size:13px;color:var(--ink3);margin-top:6px}
+
+.auth-tabs{display:flex;background:var(--bg2);border-radius:10px;padding:3px;margin-bottom:18px}
+.auth-tab{flex:1;text-align:center;font-size:14px;padding:8px;border-radius:8px;border:none;cursor:pointer;font-family:inherit;background:transparent;color:var(--ink2);font-weight:400;transition:.18s}
+.auth-tab.on{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.06)}
+
+/* 切换登录/注册时:模糊淡入 */
+.auth-panel{display:flex;flex-direction:column;gap:14px;animation:authSwitch .26s ease}
+@keyframes authSwitch{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:blur(0)}}
+
+.auth-fld{display:flex;flex-direction:column;gap:6px}
+.auth-fld .lb{font-size:12.5px;color:var(--ink2);font-weight:500}
+.auth-fld .lb .opt{color:var(--ink3);font-weight:400}
+.auth-inp{position:relative}
+.auth-inp .ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#a8a8ae;pointer-events:none}
+.auth-inp input{width:100%;height:46px;border:1px solid var(--line2);border-radius:10px;padding:0 14px 0 40px;font-size:14px;font-family:inherit;background:var(--surface);color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}
+.auth-inp.pw input{padding-right:42px}
+.auth-inp input::placeholder{color:#a8a8ae}
+.auth-inp input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-50)}
+.auth-eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;padding:6px;cursor:pointer;color:var(--ink3);display:inline-flex;border-radius:8px;transition:.15s}
+.auth-eye:hover{color:var(--ink2)}
+
+.auth-submit{height:46px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-size:15px;font-weight:500;font-family:inherit;cursor:pointer;margin-top:4px;transition:.15s}
+.auth-submit:hover{background:var(--accent-d)}
+.auth-submit:disabled{opacity:.6;cursor:default}
+.auth-err{color:var(--red);font-size:13px}
+
+.auth-or{display:flex;align-items:center;gap:12px;margin:18px 0}
+.auth-or span:first-child,.auth-or span:last-child{flex:1;height:1px;background:var(--line)}
+.auth-or .txt{font-size:12px;color:var(--ink3)}
+
+.auth-google{height:46px;width:100%;border:1px solid var(--line2);border-radius:10px;background:var(--surface);display:flex;align-items:center;justify-content:center;gap:9px;font-size:14px;color:var(--ink2);font-family:inherit;cursor:pointer;transition:background .15s,border-color .15s,box-shadow .15s}
+.auth-google:hover{background:var(--bg2);border-color:var(--ink3);box-shadow:var(--sh-sm)}
+.auth-google .g{width:18px;height:18px;display:inline-block;flex:none}
+.auth-google .hint{font-size:11.5px;color:#a8a8ae}
+
+/* 手机端:输入框字号 ≥16px,否则 iOS Safari 聚焦时会自动放大整页 */
+@media(max-width:768px){
+  .auth-inp input{font-size:16px}
+}
+@media(max-width:480px){
+  .auth-card{padding:26px 22px}
+  .auth-tabs{margin-bottom:14px}
+}

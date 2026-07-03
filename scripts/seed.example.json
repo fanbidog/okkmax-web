@@ -1,0 +1,26 @@
+{
+  "stations": [
+    {
+      "slug": "example-relay",
+      "name": "示例中转站",
+      "baseUrl": "https://relay.example.com",
+      "category": "commercial",
+      "channels": [
+        {
+          "name": "cc",
+          "service": "cc",
+          "model": "claude-sonnet-4-6",
+          "key": "sk-REPLACE",
+          "detect": true
+        },
+        {
+          "name": "codex",
+          "service": "cx",
+          "model": "gpt-5.5",
+          "key": "sk-REPLACE",
+          "detect": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Station {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  externalSiteId Int?      @unique  // 外部目录源的站点 ID(可选)
+  name        String
+  baseUrl     String
+  homepage    String?
+  description String?
+  description_en     String?
+  description_enHash String?
+  logoUrl     String?
+  docsUrl     String?
+  category    String    @default("commercial")
+  groups      Json?
+  announcements Json?
+  announcements_en Json?
+  socials     Json?
+  routes      Json?
+  routes_en        Json?
+  info        Json?
+  info_en          Json?
+  // 评分缓存:算分步骤每轮写、页面读(见 docs/scoring-system.md)。纯度未测时 purityIndex/Tier 为 null。
+  compositeScore Float?
+  purityIndex    Float?
+  purityTier     String?
+  availIndex     Float?
+  speedIndex     Float?
+  rank           Int?
+  prevRank       Int?      // 上一轮算分的排名,用于首页显示涨跌 ↑/↓N;首次为 null=新上榜
+  scoredAt       DateTime?
+  channels    Channel[]
+  events       StationEvent[]
+  reviews     Review[]
+  favorites   Favorite[]
+  feedbacks   Feedback[]
+  lockedFields String[] @default([])
+  // 运营暂停整站监测(后台控):停该站所有组的可用性/检测采集。停监测不删站。
+  monitoringPaused Boolean @default(false)
+  // 手动下架(后台控,设了=下架):移出榜单/评分 + 停一切监测,且不被自动发现复活;保留记录与历史。
+  retiredAt   DateTime?
+  referralUrl    String?
+  commissionRate String?
+  settlement     String?
+  opsNote        String?
+  revenues       RevenueEntry[]
+  createdAt   DateTime  @default(now())
+}
+
+model Feedback {
+  id        String   @id @default(cuid())
+  station   Station  @relation(fields: [stationId], references: [id], onDelete: Cascade)
+  stationId String
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId    String?
+  type      String
+  body      String
+  source    String?
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+
+  @@index([stationId])
+}
+
+model Channel {
+  id         String            @id @default(cuid())
+  station    Station           @relation(fields: [stationId], references: [id])
+  stationId  String
+  name       String
+  service    String
+  models     Json?
+  modelPrices Json?
+  // 该组「已知暂不可用」的模型记录 [{ m: string, at: ISO }];采集侧据此跳过,条目超期自动复活。
+  deadModels Json?
+  // 手动指定该组采集用的 model id(自动选择不合适时人工覆盖)。
+  probeModelOverride String?
+  // 运营暂停开关(后台控):停该组的在线率/检测采集。停监测不删站。
+  probePaused  Boolean @default(false)
+  detectPaused Boolean @default(false)
+  uptimes    UptimeSnapshot[]
+  detections DetectionResult[]
+  windows    UptimeWindow[]
+  currentStatus    Int?
+  currentLatencyMs Int?
+  uptimeSyncedAt   DateTime?
+  // 评分缓存(每组,供「测评表现」按组拆解):近窗口算出的纯度/可用/速度
+  purity Float?
+  avail  Float?
+  speed  Float?
+  // 软下架:该组已无可用模型时标记。不删历史,移出榜单/评分;上游恢复则清空复活。
+  delistedAt DateTime?
+  createdAt  DateTime          @default(now())
+
+  @@unique([stationId, name])
+}
+
+model UptimeWindow {
+  id         String   @id @default(cuid())
+  channel    Channel  @relation(fields: [channelId], references: [id])
+  channelId  String
+  period     String
+  points     Json
+  avg        Float
+  fetchedAt  DateTime @default(now())
+
+  @@unique([channelId, period])
+}
+
+model UptimeSnapshot {
+  id           String   @id @default(cuid())
+  channel      Channel  @relation(fields: [channelId], references: [id])
+  channelId    String
+  status       Int
+  latencyMs    Int
+  availability Float
+  statusCounts Json
+  timeline     Json?
+  capturedAt   DateTime @default(now())
+}
+
+model DetectionResult {
+  id         String   @id @default(cuid())
+  channel    Channel  @relation(fields: [channelId], references: [id])
+  channelId  String
+  model      String
+  actualModel String?
+  modelDowngraded Boolean?
+  totalScore Float
+  verdict    String
+  tier       String
+  report     Json
+  detectedAt DateTime @default(now())
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?
+  googleId     String?  @unique  // Google OAuth 的 sub(稳定 ID);与 passwordHash 共同编码登录方式
+  name         String?
+  image        String?
+  bio          String?
+  points       Int      @default(0)
+  checkInStreak Int     @default(0)
+  status       String   @default("active") // active | banned —— 封号即 banned,前台登录被拒
+  bannedAt     DateTime?
+  bannedReason String?
+  inviteCode   String?  @unique  // 专属邀请码(注册时生成 / 老用户首次打开邀请弹窗时补)
+  invitedById  String?           // 我是被谁邀请的
+  invitedBy    User?    @relation("UserInvites", fields: [invitedById], references: [id], onDelete: SetNull)
+  invitees     User[]   @relation("UserInvites")
+  createdAt    DateTime @default(now())
+  emailVerifiedAt DateTime?       // 注册邮箱验证通过时间(方案A下新号必有;老号为 null)
+  passwordResetTokens PasswordResetToken[]
+  sessions     Session[]
+  reviews      Review[]
+  replies      ReviewReply[]
+  votes        Vote[]
+  favorites    Favorite[]
+  checkIns     CheckIn[]
+  pointsLogs   PointsLog[]
+  submissions  Submission[]
+  feedbacks    Feedback[]
+}
+
+model CheckIn {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  day       String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, day])
+}
+
+model PointsLog {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  delta     Int
+  reason    String
+  balance   Int
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Submission {
+  id           String   @id @default(cuid())
+  user         User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId       String?
+  name         String
+  url          String
+  intro        String?
+  contact      String?
+  models       String[] @default([])
+  payment      String?  // 支付方式,「、」分隔
+  invoice      String?  // 发票:支持 / 不支持 / 自定义说明
+  refund       String?  // 退款政策:支持 / 不支持 / 自定义说明
+  promo        String?  // 优惠活动
+  note         String?
+  probeAccount String?
+  probePassword String?
+  status       String   @default("pending")
+  resultNote   String?
+  createdAt    DateTime @default(now())
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  station   Station  @relation(fields: [stationId], references: [id], onDelete: Cascade)
+  stationId String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, stationId])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  station   Station  @relation(fields: [stationId], references: [id], onDelete: Cascade)
+  stationId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  rating    Int
+  body      String
+  tags      String[] @default([]) // 兼容旧数据;新评论极性见 prosTags/consTags
+  prosTags  String[] @default([])
+  consTags  String[] @default([])
+  isWarning Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  replies   ReviewReply[]
+
+  @@index([stationId, createdAt])
+}
+
+model ReviewReply {
+  id        String   @id @default(cuid())
+  review    Review   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  reviewId  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Vote {
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  targetType String   // "review" | "reply"
+  targetId   String
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, targetType, targetId])
+}
+
+model StationEvent {
+  id        String   @id @default(cuid())
+  station   Station  @relation(fields: [stationId], references: [id], onDelete: Cascade)
+  stationId String
+  type      String   // listed | group_add | group_delist | group_relist | price | tier | model
+  channel   String?  // 关联分组名;站级事件为 null
+  data      Json?    // 结构化值,渲染时拼句
+  at        DateTime @default(now())
+
+  @@index([stationId, at])
+}
+
+model RevenueEntry {
+  id        String   @id @default(cuid())
+  station   Station  @relation(fields: [stationId], references: [id], onDelete: Cascade)
+  stationId String
+  ym        String
+  amountRmb Float
+  note      String?
+  createdAt DateTime @default(now())
+
+  @@unique([stationId, ym])
+}
+
+model Content {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  title     String
+  title_en     String?
+  title_enHash String?
+  body      String
+  body_en     String?
+  body_enHash String?
+  updatedAt DateTime @updatedAt
+}
+
+// 审计日志(@adminjs/logger):记录后台高危资源的增删改,字段级 before/after。
+// 字段名按 @adminjs/logger 约定(recordId/recordTitle/difference/action/resource/user)。
+// recordId 为 String:本库主键是 cuid(非自增 Int);user 存操作人 email(currentAdmin 只有 email)。
+model Log {
+  id          String   @id @default(cuid())
+  recordId    String
+  recordTitle String?
+  difference  Json?
+  action      String
+  resource    String
+  user        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([resource, createdAt])
+}
+
+// ============ 活动页(/activity)============
+// 纯人工录入(机器测不了),后台完整 CRUD。dead(已失效/已结束)由 active+endsAt 推导,不落库。
+model FreeApi {
+  id         String    @id @default(cuid())
+  model      String    // 模型名,如 gemini-3.5-flash
+  provider   String    // 提供者,如 Google Gemini
+  logoUrl    String    @default("")            // 真 logo 图片 URL;空则前台用首字母兜底
+  context    String    // 上下文,如 100万 / 128K
+  maxOutput  String    // 最大输出,如 64K
+  bindCard   String    @default("免绑卡")      // 免绑卡 | 需实名
+  network    String    @default("国内直连")    // 国内直连 | 需海外网络
+  quota      String    // 免费额度,一句话,如 2000万 token/天 速率 40 次/分
+  quota_en     String?
+  quota_enHash String?
+  modality   String    @default("")            // 文本/图像/视频/声音/pdf/推理/代码,逗号分隔(后台标签多选)
+  endsAt     DateTime?                          // 截止;留空=长期
+  active     Boolean   @default(true)           // 上架开关;关=下线
+  sortWeight Int       @default(0)              // 置顶/排序,大在前
+  claimUrl   String    @default("")             // 前往链接(人工填)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([active, sortWeight])
+}
+
+model RelayPromo {
+  id          String    @id @default(cuid())
+  station     String    // 站点名
+  host        String    @default("")            // 域名
+  logoUrl     String    @default("")            // 真 logo 图片 URL;空则首字母兜底
+  activity    String    // 活动内容
+  activity_en     String?
+  activity_enHash String?
+  eligibility String    @default("")            // 参与资格(门槛),自由文本
+  eligibility_en     String?
+  eligibility_enHash String?
+  steps       String    @default("")            // 领取步骤,多行文本,每行一步
+  steps_en     String?
+  steps_enHash String?
+  terms       String    @default("")            // 条款(可选)
+  terms_en     String?
+  terms_enHash String?
+  endsAt      DateTime?                          // 截止;留空=长期
+  active      Boolean   @default(true)
+  sortWeight  Int       @default(0)
+  claimUrl    String    @default("")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([active, sortWeight])
+}
+
+model TranslationFailure {
+  id          String   @id @default(cuid())
+  model       String
+  recordId    String
+  fieldPath   String
+  srcHash     String
+  error       String
+  attempts    Int      @default(1)
+  attemptedAt DateTime @updatedAt
+  @@unique([model, recordId, fieldPath])
+}
+
+model ScanLock {
+  id        String   @id
+  startedAt DateTime
+  pid       String?
+}
+
+// 注册暂存:验证码通过才建 User。一邮箱一条 active(upsert 覆盖),过期自然失效。
+model EmailVerification {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String              // 已 bcrypt,不是明文
+  name         String?
+  inviteRef    String?             // 邀请码 ref(来自 okmax_ref cookie),建号时归因
+  codeHash     String              // sha256(6位码)
+  attempts     Int      @default(0) // 错码累计,达上限作废
+  expiresAt    DateTime
+  lastSentAt   DateTime @default(now())
+  createdAt    DateTime @default(now())
+}
+
+// 密码重置 token:高熵、一次性、绑用户、带过期。
+model PasswordResetToken {
+  id         String    @id @default(cuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash  String    @unique     // sha256(随机token);邮件链接带明文
+  expiresAt  DateTime
+  consumedAt DateTime?             // 用过即非空
+  createdAt  DateTime  @default(now())
+}
+
+// 通用限流计数(滑动窗口)。bucket 如 "verify:email:foo@bar" / "reset:ip:1.2.3.4"。可复用于 login/detect。
+model RateLimitHit {
+  id        String   @id @default(cuid())
+  bucket    String
+  createdAt DateTime @default(now())
+
+  @@index([bucket, createdAt])
+}
+
+// 注册邮箱白名单(严格 allowlist,后台「系统」组维护)。仅拦密码注册口,Google 口不受此限。
+// 判定:无任何 enabled 行=开放;有则仅命中域名放行。domain 前缀 "*." 表示后缀匹配(如 *.edu.cn)。
+model EmailWhitelist {
+  id        String   @id @default(cuid())
+  domain    String   @unique
+  note      String?
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
