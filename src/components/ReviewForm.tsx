@@ -34,10 +34,24 @@ function TagGroup({ caption, suggested, selected, setSelected, other, total }: {
   );
 }
 
-/** 写点评:列表里是「留下评论」按钮,点开弹窗(评分 + 内容必填 + 优点/缺点标签)。一人可发多条,无"修改"概念。 */
-export function ReviewForm({ stationId, slug, loggedIn }: { stationId: string; slug: string; loggedIn: boolean }) {
+type StationOpt = { id: string; slug: string; name: string; logoUrl: string | null };
+
+/** 写点评:列表里是「留下评论」按钮,点开弹窗(评分 + 内容必填 + 优点/缺点标签)。一人可发多条,无"修改"概念。
+ *  两种用法:①站点页传 stationId/slug(固定站,现状不变);②口碑页传 stations 列表 → 选站模式,弹窗顶部先选站。 */
+export function ReviewForm({ stationId, slug, loggedIn, stations, triggerLabel }: {
+  stationId?: string; slug?: string; loggedIn: boolean; stations?: StationOpt[]; triggerLabel?: string;
+}) {
   const t = useT();
+  const pickMode = !!stations; // 选站模式(口碑页)
   const [open, setOpen] = useState(false);
+  const [picked, setPicked] = useState<StationOpt | null>(null);
+  const [stnQuery, setStnQuery] = useState("");
+  // 有效的站点(选站模式用选中的,站点页用固定的)
+  const effId = pickMode ? picked?.id ?? "" : stationId ?? "";
+  const effSlug = pickMode ? picked?.slug ?? "" : slug ?? "";
+  const stnMatches = stnQuery.trim()
+    ? (stations ?? []).filter((s) => s.name.toLowerCase().includes(stnQuery.trim().toLowerCase())).slice(0, 8)
+    : (stations ?? []).slice(0, 8);
   const [rating, setRating] = useState(5);
   const [hover, setHover] = useState(0);
   const [body, setBody] = useState("");
@@ -61,13 +75,14 @@ export function ReviewForm({ stationId, slug, loggedIn }: { stationId: string; s
   }
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     if (!loggedIn) { e.preventDefault(); setOpen(false); window.dispatchEvent(new CustomEvent("open-auth")); return; }
+    if (pickMode && !picked) { e.preventDefault(); toast(t("请先选择要评价的站点"), "err"); return; } // 选站模式必须先选站
     if (submitting) { e.preventDefault(); return; } // 防重复提交:已在提交则拦下
     setSubmitting(true);
   }
 
   return (
     <>
-      <button type="button" className="rv-leave" onClick={openModal}>{t("留下评论")}</button>
+      <button type="button" className="rv-leave" onClick={openModal}>{triggerLabel ?? t("留下评论")}</button>
       {open && (
         <div className="rvovl">
           <div className="rvmodal">
@@ -78,12 +93,36 @@ export function ReviewForm({ stationId, slug, loggedIn }: { stationId: string; s
               </button>
             </div>
             <form method="post" action="/api/reviews" onSubmit={onSubmit}>
-              <input type="hidden" name="stationId" value={stationId} />
-              <input type="hidden" name="slug" value={slug} />
+              <input type="hidden" name="stationId" value={effId} />
+              <input type="hidden" name="slug" value={effSlug} />
               <input type="hidden" name="rating" value={rating} />
               {pros.map((t) => <input key={"p" + t} type="hidden" name="pros" value={t} />)}
               {cons.map((t) => <input key={"c" + t} type="hidden" name="cons" value={t} />)}
               <div className="rvm-body">
+                {pickMode && (
+                  <div className="rvm-row">
+                    <label>{t("选择站点")}</label>
+                    {picked ? (
+                      <div className="rvm-stnpick">
+                        {picked.logoUrl ? <img src={picked.logoUrl} alt="" /> : <span className="lg">{picked.name.slice(0, 1)}</span>}
+                        <b>{picked.name}</b>
+                        <button type="button" className="chg" onClick={() => { setPicked(null); setStnQuery(""); }}>{t("更换")}</button>
+                      </div>
+                    ) : (
+                      <div className="rvm-stnsel">
+                        <input value={stnQuery} onChange={(e) => setStnQuery(e.target.value)} placeholder={t("搜索要评价的站点…")} autoFocus />
+                        <div className="rvm-stnlist">
+                          {stnMatches.length ? stnMatches.map((s) => (
+                            <button type="button" key={s.id} className="rvm-stnitem" onClick={() => setPicked(s)}>
+                              {s.logoUrl ? <img src={s.logoUrl} alt="" /> : <span className="lg">{s.name.slice(0, 1)}</span>}
+                              <span>{s.name}</span>
+                            </button>
+                          )) : <div className="rvm-stnempty">{t("无匹配站点")}</div>}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
                 <div className="rvm-row">
                   <label>{t("评分")}</label>
                   <div className="rvm-stars">

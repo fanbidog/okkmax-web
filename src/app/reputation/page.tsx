@@ -6,6 +6,8 @@ import { getLocale } from "@/lib/i18n/locale";
 import { t } from "@/lib/i18n/ui";
 import { pick } from "@/lib/i18n/pick";
 import { pageList } from "@/lib/pagination";
+import { getCurrentUser } from "@/lib/auth";
+import { ReputationFilter } from "@/components/ReputationFilter";
 
 export const dynamic = "force-dynamic";
 const PER = 12;
@@ -41,16 +43,21 @@ export const metadata = {
   alternates: { canonical: "/reputation" },
 };
 
-export default async function ReputationPage({ searchParams }: { searchParams: Promise<{ p?: string }> }) {
+export default async function ReputationPage({ searchParams }: { searchParams: Promise<{ p?: string; q?: string; score?: string }> }) {
   const locale = await getLocale();
   const sp = await searchParams;
-  const stations = await prisma.station.findMany({
-    where: { reviews: { some: {} } },
-    select: {
-      slug: true, name: true, logoUrl: true, description: true, description_en: true, homepage: true, baseUrl: true,
-      reviews: { select: { rating: true, tags: true, prosTags: true, consTags: true } },
-    },
-  });
+  const me = await getCurrentUser();
+  const [stations, allStations] = await Promise.all([
+    prisma.station.findMany({
+      where: { reviews: { some: {} } },
+      select: {
+        slug: true, name: true, logoUrl: true, description: true, description_en: true, homepage: true, baseUrl: true,
+        reviews: { select: { rating: true, tags: true, prosTags: true, consTags: true } },
+      },
+    }),
+    // 写评价的选站列表:所有未下架的站(可给尚无评价的站写第一条)
+    prisma.station.findMany({ where: { retiredAt: null }, select: { id: true, slug: true, name: true, logoUrl: true }, orderBy: { name: "asc" } }),
+  ]);
 
   const cards = stations.map((s) => {
     const count = s.reviews.length;
@@ -67,9 +74,18 @@ export default async function ReputationPage({ searchParams }: { searchParams: P
     return { slug: s.slug, name: s.name, logoUrl: s.logoUrl, description: pick(s, "description", locale), url, count, avg, pros: top(pos), cons: top(neg) };
   }).sort((a, b) => b.avg - a.avg || b.count - a.count);
 
-  const totalPages = Math.max(1, Math.ceil(cards.length / PER));
+  // 筛选:按名字搜索 + 评分区间(多少分-多少分)
+  const q = (sp.q ?? "").trim().toLowerCase();
+  const score = sp.score ?? "all";
+  const inScore = (avg: number) =>
+    score === "all" || (score === "4.5" && avg >= 4.5) || (score === "4" && avg >= 4 && avg < 4.5)
+    || (score === "3" && avg >= 3 && avg < 4) || (score === "low" && avg < 3);
+  const filtered = cards.filter((c) => (!q || c.name.toLowerCase().includes(q)) && inScore(c.avg));
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER));
   const page = Math.min(Math.max(1, Number(sp.p) || 1), totalPages);
-  const pageCards = cards.slice((page - 1) * PER, page * PER);
+  const pageCards = filtered.slice((page - 1) * PER, page * PER);
+  const qs = new URLSearchParams({ ...(q ? { q } : {}), ...(score !== "all" ? { score } : {}) }).toString(); // 分页保留筛选
 
   return (
     <>
@@ -82,7 +98,9 @@ export default async function ReputationPage({ searchParams }: { searchParams: P
           </div>
         </div>
 
-        {cards.length ? (
+        <ReputationFilter stations={allStations} loggedIn={!!me} />
+
+        {filtered.length ? (
           <>
             <div className="rep-list" style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               {pageCards.map((c) => (
@@ -159,7 +177,7 @@ export default async function ReputationPage({ searchParams }: { searchParams: P
               <nav className="board-pager" aria-label={t("分页", locale)} style={{ marginTop: 22 }}>
                 {pageList(page, totalPages).map((n, i) => n === "…"
                   ? <span key={`e${i}`} className="bp-e">…</span>
-                  : <Link key={n} href={`/reputation?p=${n}`} className={"bp" + (n === page ? " on" : "")} aria-current={n === page ? "page" : undefined}>{n}</Link>)}
+                  : <Link key={n} href={`/reputation?${qs ? qs + "&" : ""}p=${n}`} className={"bp" + (n === page ? " on" : "")} aria-current={n === page ? "page" : undefined}>{n}</Link>)}
               </nav>
             )}
           </>

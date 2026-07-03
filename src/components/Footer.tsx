@@ -36,6 +36,7 @@ export async function Footer() {
       <div className="f-wrap">
         <div className="f-top">
           <div className="f-brand">
+            <Link href="/" className="f-logo" aria-label="OkkMax">OkkMa<span className="x">x</span></Link>
             <div className="f-social">
               <span className="f-soc" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7 8 8.2 12h-6.6l-5.2-7.6L4.4 22H1.3l7.5-8.6L1 2h6.7l4.7 7zm-1.1 18h1.7L7.3 3.8H5.4z" /></svg></span>
               <span className="f-soc" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7 0-.7 0-.7 1.2 0 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 5 18.3 5.3 18.3 5.3c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z" /></svg></span>
@@ -62,12 +63,6 @@ export async function Footer() {
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="f-big" aria-hidden="true">
-          <svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax meet">
-            <text x="0" y="190" textLength="1200" lengthAdjust="spacingAndGlyphs" fontSize="220">OkkMax</text>
-          </svg>
         </div>
       </div>
     </footer>
