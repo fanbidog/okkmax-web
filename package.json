@@ -15,10 +15,10 @@
     "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.3",
     "html-to-image": "^1.11.13",
-    "next": "16.2.9",
+    "next": "^16.2.10",
     "qrcode": "^1.5.4",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "resend": "^6.16.0"
   },
   "devDependencies": {
