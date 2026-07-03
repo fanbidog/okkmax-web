@@ -183,6 +183,7 @@
   "去纠错": "Report error",
   "去评价": "Write a review",
   "去邀请": "Invite",
+  "参与": "Get involved",
   "参与资格": "Eligibility",
   "参数缺失": "Missing parameters",
   "参数错误": "Parameter error",
@@ -774,6 +775,6 @@
   "验证码已过期,请重新获取": "The verification code has expired. Please obtain a new one.",
   "验证码错误次数过多,请重新获取": "Too many incorrect verification code attempts, please try again.",
   "高可用": "High availability",
-  "🔍 搜模型 / 家族…": "🔍 Search models / families…",
-  "（预计增加耗时 30 秒）": "(about 30s extra)"
+  "（预计增加耗时 30 秒）": "(about 30s extra)",
+  "🔍 搜模型 / 家族…": "🔍 Search models / families…"
 }

@@ -6,11 +6,12 @@
 .site-footer .f-logo{font-family:var(--font-orbitron),-apple-system,sans-serif;font-weight:900;font-size:26px;letter-spacing:-.01em;color:var(--ink);line-height:1}
 .site-footer .f-logo .x{color:var(--accent)}
 .site-footer .f-social{display:flex;align-items:center;gap:24px}
-.site-footer .f-soc{color:var(--ink);display:inline-flex}
+.site-footer .f-soc{color:var(--ink);display:inline-flex;transition:.12s}
+.site-footer a.f-soc:hover{color:var(--accent-d)}
 .site-footer .f-copy{font-size:13.5px;color:var(--ink2);display:flex;align-items:center;gap:7px;margin:0}
 .site-footer .f-copy svg{flex-shrink:0}
 
-.site-footer .f-cols{display:grid;grid-template-columns:repeat(3,minmax(120px,auto));gap:56px}
+.site-footer .f-cols{display:grid;grid-template-columns:repeat(4,minmax(104px,auto));gap:48px}
 .site-footer .f-col h4{font-size:13px;font-weight:600;color:var(--ink3);margin:0 0 18px}
 .site-footer .f-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
 .site-footer .f-col a{font-size:14px;color:var(--ink);text-decoration:none;transition:.12s}
@@ -23,5 +24,5 @@
   .site-footer .f-top{flex-direction:column;gap:34px}
   .site-footer .f-brand{min-height:auto;gap:20px}
   .site-footer .f-social{flex:none}
-  .site-footer .f-cols{grid-template-columns:repeat(3,1fr);gap:24px}
+  .site-footer .f-cols{grid-template-columns:repeat(2,1fr);gap:26px 24px}
 }
