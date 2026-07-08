@@ -126,7 +126,7 @@ Key 仅用于发起当次检测,用完即弃——不写数据库、不留日志
 
 ## Star History
 
-<a href="https://www.star-history.com/#fanbidog/okkmax-web&Date"><img src="https://api.star-history.com/svg?repos=fanbidog/okkmax-web&type=Date" alt="Star History Chart" width="600"></a>
+<a href="https://github.com/fanbidog/okkmax-web/stargazers"><img src="assets/star-history.svg" alt="Star History Chart" width="600"></a>
 
 ## License
 

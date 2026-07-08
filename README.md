@@ -126,7 +126,7 @@ The key is used only for that single test and then discarded — never written t
 
 ## Star History
 
-<a href="https://www.star-history.com/#fanbidog/okkmax-web&Date"><img src="https://api.star-history.com/svg?repos=fanbidog/okkmax-web&type=Date" alt="Star History Chart" width="600"></a>
+<a href="https://github.com/fanbidog/okkmax-web/stargazers"><img src="assets/star-history.svg" alt="Star History Chart" width="600"></a>
 
 ## License
 
