@@ -8,12 +8,14 @@ import { SearchBox } from "@/components/SearchBox";
 import { NavShell } from "@/components/NavShell";
 import { NavSettings } from "@/components/NavSettings";
 import { MobileNav } from "@/components/MobileNav";
+import { BetaBanner } from "@/components/BetaBanner";
 
-const LINKS: { label: string; href: string; key: string; ready: boolean }[] = [
+const LINKS: { label: string; href: string; key: string; ready: boolean; isNew?: boolean }[] = [
   { label: "首页", href: "/", key: "home", ready: true },
   { label: "站点", href: "/list", key: "list", ready: true },
   { label: "可用性", href: "/availability", key: "availability", ready: true },
   { label: "口碑", href: "/reputation", key: "reputation", ready: true },
+  { label: "工具", href: "/tools/iq", key: "tools", ready: true, isNew: true },
   { label: "活动", href: "/activity", key: "activity", ready: true },
 ];
 
@@ -21,6 +23,8 @@ export async function SiteNav({ active }: { active?: string }) {
   const user = await getCurrentUser();
   const locale = await getLocale();
   return (
+    <>
+    <BetaBanner />
     <NavShell>
         <Link href="/" className="brand" aria-label="OkkMax">OkkMa<span className="x">x</span></Link>
         <div className="navlinks">
@@ -31,7 +35,7 @@ export async function SiteNav({ active }: { active?: string }) {
               className={active === l.key ? "on" : ""}
               style={l.ready ? undefined : { color: "var(--ink3)", cursor: "default" }}
               title={l.ready ? undefined : t("建设中", locale)}
-            >{t(l.label, locale)}</Link>
+            >{t(l.label, locale)}{l.isNew && <span className="nav-new">NEW</span>}</Link>
           ))}
         </div>
         <div className="navactions">
@@ -50,5 +54,6 @@ export async function SiteNav({ active }: { active?: string }) {
           )}
         </div>
     </NavShell>
+    </>
   );
 }

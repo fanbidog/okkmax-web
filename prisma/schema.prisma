@@ -440,3 +440,38 @@ model EmailWhitelist {
   enabled   Boolean  @default(true)
   createdAt DateTime @default(now())
 }
+
+// ── 模型智商榜(工具页):第三方基准数据镜像,定时同步落库(同步任务不在本仓) ──
+// 页面只读自己的库;来源只留短窗口,IqDaily 是自己攒的长历史(永久保留)。
+
+model IqModel {
+  id        Int      @id // 源站模型 id
+  name      String // 源站 API 名(gpt-5.4)
+  display   String // 展示名(GPT-5.4)
+  vendor    String // anthropic/openai/google/deepseek/kimi/glm
+  reasoning Boolean  @default(false) // 推理模型
+  updatedAt DateTime @updatedAt
+  daily     IqDaily[]
+}
+
+model IqDaily {
+  id      String   @id @default(cuid())
+  model   IqModel  @relation(fields: [modelId], references: [id])
+  modelId Int
+  date    DateTime @db.Date // UTC 日
+  score   Int? // 当日综合分中位(0-100)
+  stab    Int? // 当日稳定性轴中位(0-100)
+
+  @@unique([modelId, date])
+}
+
+model IqSyncRound {
+  id        String   @id @default(cuid())
+  ok        Boolean // 本轮是否成功(失败轮也落一行,便于排查)
+  tookMs    Int
+  note      String? // 统计或失败原因
+  payload   Json? // 清洗后的当前榜 payload(页面渲染源)
+  createdAt DateTime @default(now())
+
+  @@index([ok, createdAt])
+}

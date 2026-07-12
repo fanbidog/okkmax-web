@@ -38,6 +38,34 @@ a{text-decoration:none;color:inherit}
 .wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 28px}
 .wrap-narrow{max-width:900px;margin:0 auto;padding:0 28px}
 
+/* 公测横幅:随页面滚动一起划出,不常驻(不是 sticky) */
+.beta-banner{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;background:var(--accent-50);border-bottom:1px solid #f6dccf;padding:11px 44px;font-size:13.5px;color:var(--ink2);line-height:1.5;text-align:center}
+.beta-banner a{color:var(--accent-d);font-weight:600;text-decoration:underline}
+:root[data-theme="dark"] .beta-banner{background:var(--bg2);border-bottom-color:var(--line)}
+@media(prefers-color-scheme: dark){
+  :root[data-theme="system"] .beta-banner{background:var(--bg2);border-bottom-color:var(--line)}
+}
+.beta-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:22px;height:22px;border:none;background:none;cursor:pointer;color:var(--ink3);display:flex;align-items:center;justify-content:center;border-radius:50%;flex:none}
+.beta-close:hover{background:var(--bg2);color:var(--ink)}
+@media(max-width:768px){
+  .beta-banner{padding:10px 34px 10px 14px;font-size:12.5px;text-align:left;justify-content:flex-start}
+  .beta-close{top:10px;transform:none}
+}
+
+/* cookie 告知条:底部悬浮白卡,对齐 1200 内容列(视觉基准 public/mock-cookie.html) */
+.ck-notice{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;z-index:80;width:min(1200px,calc(100vw - 32px));display:flex;align-items:center;gap:18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 4px 14px rgba(28,25,23,.05),0 20px 44px -16px rgba(28,25,23,.22);padding:15px 18px}
+.ck-ico{flex:none;width:34px;height:34px;border-radius:9px;background:var(--accent-50);color:var(--accent-d);display:flex;align-items:center;justify-content:center}
+.ck-tx{flex:1;min-width:0;font-size:13px;line-height:1.6;color:var(--ink2)}
+.ck-tx a{color:var(--accent-d);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.ck-btn{flex:none;border:none;background:var(--accent);color:#fff;font-family:inherit;font-size:13px;font-weight:600;padding:9px 20px;border-radius:10px;cursor:pointer;box-shadow:0 6px 14px -6px rgba(224,81,43,.5)}
+.ck-btn:hover{background:var(--accent-d)}
+@media(max-width:640px){
+  .ck-notice{flex-wrap:wrap;bottom:12px;padding:14px 16px;gap:12px}
+  .ck-ico{display:none}
+  .ck-tx{flex:1 1 100%}
+  .ck-btn{flex:1 1 100%;padding:11px}
+}
+
 /* nav */
 .nav{position:sticky;top:0;z-index:20;background:transparent;border-bottom:1px solid transparent;transition:background .25s ease,border-color .25s ease}
 .nav.scrolled{background:var(--nav-frost);backdrop-filter:saturate(180%) blur(16px);border-bottom-color:var(--line)}
@@ -46,6 +74,7 @@ a{text-decoration:none;color:inherit}
 .brand .x{color:var(--accent)}
 .navlinks{display:flex;gap:28px;font-size:16px}
 .navlinks a{color:var(--ink2);transition:color .15s}.navlinks a:hover{color:var(--ink)}
+.nav-new{display:inline-block;margin-left:3px;transform:translateY(-7px);font-size:8.5px;font-weight:700;color:#fff;background:var(--accent);border-radius:4px;padding:1px 4px;line-height:1.35;letter-spacing:.03em}
 .navlinks a.on{color:var(--accent);font-weight:600}
 .navactions{flex:1;display:flex;align-items:center;justify-content:flex-end;gap:4px}
 /* nav icon buttons (search / github / theme / lang) */

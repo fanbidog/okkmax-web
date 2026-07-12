@@ -10,11 +10,13 @@ import "./submit.css";
 import "./invite.css";
 import "./auth.css";
 import "./detail.css";
+import "./iq.css";
 import "./footer.css";
 import { Footer } from "@/components/Footer";
 import { ToastHost } from "@/components/Toast";
 import { InviteModal } from "@/components/InviteModal";
 import { LocaleProvider } from "@/components/LocaleProvider";
+import { CookieNotice } from "@/components/CookieNotice";
 import { getLocale } from "@/lib/i18n/locale";
 import { SITE_URL, SITE_NAME } from "@/lib/seo";
 
@@ -30,8 +32,9 @@ export const metadata: Metadata = {
   },
   description: "帮你发现好用的 AI 中转站:纯度、可用性、价格全自动探针实测,客观可复现,附真实用户口碑评价。",
   applicationName: SITE_NAME,
-  keywords: ["AI 中转站", "中转站测评", "中转站排行", "中转站推荐", "Claude 中转", "GPT 中转", "API 中转站", "纯度检测"],
+  keywords: ["AI 中转站", "中转站测评", "中转站排行", "中转站推荐", "Claude 中转", "Claude API 中转", "Claude Code 中转", "GPT 中转", "API 中转站", "纯度检测"],
   openGraph: { type: "website", siteName: SITE_NAME, url: SITE_URL, locale: "zh_CN", title: "OkkMax — 发现好用的 AI 中转站", description: "纯度、可用性、价格全自动探针实测,客观可复现,附真实用户口碑评价。" },
+  alternates: { types: { "application/rss+xml": [{ url: "/feed.xml", title: "OkkMax 站点动态" }] } },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
@@ -57,6 +60,7 @@ export default async function RootLayout({
           <Footer />
           <ToastHost />
           <InviteModal />
+          <CookieNotice />
         </LocaleProvider>
       </body>
     </html>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useNavDrawer } from "./NavShell";
 import { useT } from "@/components/LocaleProvider";
 
-type NavLink = { label: string; href: string; key: string; ready: boolean };
+type NavLink = { label: string; href: string; key: string; ready: boolean; isNew?: boolean };
 
 /** 手机端汉堡菜单(<768px):开合状态由 NavShell 的 context 提供,顶栏 class 同步切换,无闪烁。 */
 export function MobileNav({ links, active }: { links: NavLink[]; active?: string }) {
@@ -30,7 +30,7 @@ export function MobileNav({ links, active }: { links: NavLink[]; active?: string
                 className={"nav-drawer-link" + (active === l.key ? " on" : "")}
                 onClick={() => setOpen(false)}
                 style={l.ready ? undefined : { color: "var(--ink3)", pointerEvents: "none" }}
-              >{t(l.label)}</Link>
+              >{t(l.label)}{l.isNew && <span className="nav-new">NEW</span>}</Link>
             ))}
           </div>
         </>

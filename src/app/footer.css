@@ -13,6 +13,7 @@
 
 .site-footer .f-cols{display:grid;grid-template-columns:repeat(4,minmax(104px,auto));gap:48px}
 .site-footer .f-col h4{font-size:13px;font-weight:600;color:var(--ink3);margin:0 0 18px}
+.site-footer .f-col h4 .f-cv{display:none}
 .site-footer .f-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
 .site-footer .f-col a{font-size:14px;color:var(--ink);text-decoration:none;transition:.12s}
 .site-footer .f-col a:hover{color:var(--accent-d)}
@@ -20,9 +21,22 @@
 
 
 @media(max-width:760px){
+  .site-footer{padding:36px 0 40px}
   .site-footer .f-wrap{padding:0 16px}
-  .site-footer .f-top{flex-direction:column;gap:34px}
-  .site-footer .f-brand{min-height:auto;gap:20px}
-  .site-footer .f-social{flex:none}
-  .site-footer .f-cols{grid-template-columns:repeat(2,1fr);gap:26px 24px}
+  .site-footer .f-top{flex-direction:column;gap:28px}
+  /* 品牌行:logo 左、社交图标同行靠右;版权独占下一行 */
+  .site-footer .f-brand{min-height:auto;flex-direction:row;align-items:center;flex-wrap:wrap;gap:14px}
+  .site-footer .f-logo{font-size:22px}
+  .site-footer .f-social{flex:none;margin-left:auto;gap:18px}
+  .site-footer .f-copy{flex-basis:100%;font-size:12.5px}
+  /* 四个栏目:手风琴(Apple 移动端 footer 同款)——一组一行,点开展开,默认收起 */
+  .site-footer .f-cols{display:block}
+  .site-footer .f-col{border-bottom:1px solid var(--line)}
+  .site-footer .f-col:first-child{border-top:1px solid var(--line)}
+  .site-footer .f-col h4{display:flex;align-items:center;justify-content:space-between;margin:0;padding:15px 2px;font-size:13.5px;font-weight:600;color:var(--ink);cursor:pointer;user-select:none}
+  .site-footer .f-col h4 .f-cv{display:block;width:15px;height:15px;color:var(--ink3);flex:none;transition:transform .18s}
+  .site-footer .f-col.on h4 .f-cv{transform:rotate(180deg)}
+  .site-footer .f-col ul{display:none;padding:2px 2px 16px;gap:13px}
+  .site-footer .f-col.on ul{display:flex}
+  .site-footer .f-col a,.site-footer .f-soon{font-size:13.5px}
 }

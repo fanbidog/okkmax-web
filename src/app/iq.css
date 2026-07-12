@@ -1,0 +1,145 @@
+/* 工具页 · 模型智商榜(/tools/iq)。板式类(home-sec/board/flat-x/crumb/tbl-strong)复用全局,这里只有页面专属样式 */
+:root{--iq-openai:#1d1d1f;--iq-openai-ink:#fff;--iq-lane:#ededf0;--iq-grid:#e0e0e5;--iq-inv:0}
+:root[data-theme="dark"]{--iq-openai:#e8e8ec;--iq-openai-ink:#1b1b1f;--iq-lane:var(--bg2);--iq-grid:var(--line2);--iq-inv:1}
+@media(prefers-color-scheme: dark){
+  :root[data-theme="system"]{--iq-openai:#e8e8ec;--iq-openai-ink:#1b1b1f;--iq-lane:var(--bg2);--iq-grid:var(--line2);--iq-inv:1}
+}
+/* 黑色单色 logo(OpenAI/Kimi)暗色下反白 */
+img[src="/logos/models/openai.svg"],img[src="/logos/models/kimi.svg"]{filter:invert(var(--iq-inv))}
+.card.nsh{box-shadow:none}
+.iq-h1{font-size:24px;font-weight:600;letter-spacing:-.02em;margin-top:10px}
+.iq-lede{font-size:13.5px;color:var(--ink3);margin-top:9px;line-height:1.6}
+.iq-scroll{padding-bottom:178px}
+.iq-chart{height:220px;margin-top:10px;padding:6px 44px 0;display:flex;align-items:flex-end;gap:9px;position:relative}
+.aa-grid{position:absolute;left:44px;right:44px;top:0;bottom:0;pointer-events:none}
+.aa-grid i{position:absolute;left:0;right:0;border-top:1px dotted var(--iq-grid)}
+.aa-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:20px 20px 8px}
+.aa-head .t{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.aa-head .d{font-size:12.5px;color:var(--ink3);margin-top:5px;max-width:600px;line-height:1.55}
+.aa-head .ar{display:flex;gap:8px;flex:none;align-items:center;position:relative}
+.venpanel{position:absolute;top:calc(100% + 8px);right:0;background:var(--surface);border:1px solid var(--line2);border-radius:12px;box-shadow:var(--sh-float);padding:8px;display:none;z-index:40;min-width:230px;max-height:380px;overflow:auto}
+.venpanel.on{display:block}
+.vrow{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-size:13px;cursor:pointer;white-space:nowrap}
+.vrow:hover{background:var(--bg2)}
+.vrow img{width:16px;height:16px;object-fit:contain}
+.vrow .c{margin-left:auto;color:var(--ink3);font-size:12px}
+.vrow input{accent-color:var(--accent)}
+.icob{width:34px;height:34px;border:1px solid var(--line2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--ink2);background:var(--surface);cursor:pointer;flex:none}
+.icob:hover{background:var(--bg2)}
+.icob:disabled{opacity:.5;cursor:default}
+.aa-head .sel{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:10px;padding:8px 13px;font-size:12.5px;color:var(--ink);background:var(--surface);cursor:pointer;white-space:nowrap}
+.aa-col{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative;z-index:1}
+.aa-bar{width:78%;max-width:46px;border-radius:5px 5px 0 0;display:flex;justify-content:center;align-items:center;min-height:3px}
+.aa-bar b{color:#fff;font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.aa-out{position:absolute;bottom:calc(100% + 4px);font-size:12px;font-weight:700}
+.aa-foot{position:absolute;top:calc(100% + 10px);display:flex;flex-direction:column;align-items:center;gap:5px;width:100%}
+.aa-foot img{width:21px;height:21px;object-fit:contain}
+.aa-foot .bulb{color:var(--ink)}
+.aa-col .nm{position:absolute;top:calc(100% + 53px);right:calc(50% + 6px);transform:rotate(-58deg);transform-origin:right top;font-size:11.5px;color:var(--ink);white-space:nowrap}
+/* 完整排行表(窄桌面时框内横滑,页面宽度自适应) */
+.iq-deskboard .card.flat-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.iqtbl{min-width:1080px}
+.iqtbl td{padding:13px 12px}
+/* 数值右缘对齐表头「文字」右缘:补回表头文字后面图标的占位(排序箭头 3+8,ⓘ 4+13) */
+.iqtbl td.numcell{text-align:right;padding-right:40px}
+.iqtbl td.trendcell{text-align:right;padding-right:29px}
+.iqtbl .bl>div{white-space:nowrap}
+.iqtbl thead td{white-space:nowrap}
+.hs{display:inline-flex;align-items:center;gap:3px;cursor:pointer;user-select:none}
+.hs .sic{flex:none}
+.hs[data-dir="desc"] .sic .dn2,.hs[data-dir="asc"] .sic .up2{fill:var(--ink)}
+.hinfo{display:inline-flex;vertical-align:-2.5px;margin-left:4px;color:var(--ink3);cursor:pointer;line-height:0}
+.hinfo:hover{color:var(--ink2)}
+.htip{position:fixed;z-index:100;width:290px;padding:14px 16px 13px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 44px -12px rgba(20,12,8,.22);font-size:12.5px;font-weight:400;color:var(--ink2);line-height:1.7;text-align:left;pointer-events:none;transform:translateX(-50%)}
+.bl{display:flex;align-items:center;gap:11px}
+/* 森林图:灰底槽 + 直角绿/红实心条(从基线往右/左),与首页趋势条同一套状态色 */
+.fp{display:flex;align-items:center;gap:12px}
+.fp .w{width:168px;flex:none;position:relative;height:34px}
+.fp .lane{position:absolute;top:8px;height:18px;left:0;right:0;background:var(--iq-lane)}
+.fp .base{position:absolute;top:4px;bottom:4px;left:50%;width:1px;background:var(--line2);transform:translateX(-50%);z-index:1}
+.fp .bar{position:absolute;top:8px;height:18px;z-index:2}
+.fp .bar.pos{background:rgb(34,197,94);opacity:.85}
+.fp .bar.neg{background:rgb(239,68,68);opacity:.85}
+.fp .cv{width:26px;flex:none;font-variant-numeric:tabular-nums}
+/* 30 天趋势条:同首页 UptimeHeatmap(绿黄红、圆角、.85 透明) */
+.hm30{display:inline-flex;gap:1px;height:18px;width:128px;vertical-align:middle}
+.hm30 i{flex:1;min-width:0;border-radius:3px;opacity:.85}
+/* 悬浮提示:同主站 UptimeHeatmap 弹窗 */
+.fptip{position:fixed;z-index:100;pointer-events:none;background:var(--surface);border:1px solid var(--line2);border-radius:10px;box-shadow:var(--sh-float);padding:9px 12px;font-size:12px;line-height:1.65;color:var(--ink);white-space:nowrap}
+.fptip .t{font-weight:700;margin-bottom:3px}
+.fptip .r{color:var(--ink2);line-height:1.75}
+.fptip .r b{color:var(--ink)}
+.iq-cards{display:none}
+.mlogo{width:26px;height:26px;object-fit:contain;flex:none}
+.mlogo.s{width:18px;height:18px}
+/* 查看全部弹窗:主站居中弹窗规范(蒙版 rgba(20,16,12,.66)+blur(3px),白卡) */
+.dmask{position:fixed;inset:0;background:rgba(20,16,12,.66);backdrop-filter:blur(3px);display:flex;z-index:60;align-items:center;justify-content:center}
+.dmodal{background:var(--surface);border-radius:18px;box-shadow:var(--sh-float);width:min(640px,92vw);max-height:82vh;display:flex;flex-direction:column;overflow:hidden}
+.dmodal .mh{display:flex;align-items:center;gap:10px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.dmodal .mh .t{font-size:15px;font-weight:600}
+.dmodal .mh .d{font-size:12.5px;color:var(--ink3)}
+.dmodal .mh .x{margin-left:auto;cursor:pointer;color:var(--ink3);font-size:22px;line-height:1;background:none;border:none;padding:0}
+.dmodal .mb{padding:4px 22px 14px;overflow:auto}
+/* 信号速览:两列信号行 */
+.leaders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
+.sgrow{display:flex;align-items:flex-start;gap:12px;padding:16px 4px;border-bottom:1px solid var(--line)}
+.sgrow .info{flex:1;min-width:0}
+.sgrow .snm{font-size:14px;font-weight:600}
+.sgrow .sdesc{font-size:12.5px;color:var(--ink3);margin-top:3px;line-height:1.5}
+.sgrow .sval{text-align:right;flex:none}
+.sgrow .sval .v{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}
+.sgrow .sval .v.up{color:rgb(34,197,94)}
+.sgrow .sval .v.dn{color:rgb(239,68,68)}
+.sgrow .sval .sub{font-size:12px;color:var(--ink3);margin-top:2px;font-variant-numeric:tabular-nums}
+/* 常见问题:手风琴 */
+.faq{border-bottom:1px solid var(--line)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:21px 2px;font-size:14px;font-weight:600;cursor:pointer;list-style:none;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{width:16px;height:16px;color:var(--ink3);flex:none;transition:transform .18s}
+.faq[open] summary svg{transform:rotate(180deg)}
+.faq .a{font-size:14px;color:var(--ink2);line-height:1.8;padding:0 2px 22px;max-width:1000px}
+/* 分项基准榜 */
+.dims{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.drow{display:flex;align-items:center;gap:12px;padding:11px 0}
+.drow .dn{width:20px;height:20px;border-radius:6px;background:var(--surface);border:1px solid var(--line2);color:var(--ink3);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex:none}
+.drow .nm2{width:172px;flex:none;min-width:0;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.drow .tk{width:168px;flex:none;height:18px;background:var(--iq-lane);position:relative;margin:0 auto}
+.drow .tk .bs{position:absolute;top:-4px;bottom:-4px;left:50%;width:1px;background:var(--line2);transform:translateX(-50%);z-index:1}
+.drow .tk i{position:absolute;top:0;height:100%;background:rgb(34,197,94);opacity:.85;z-index:2}
+.drow .tk i.neg{background:rgb(239,68,68)}
+.drow .dv{width:34px;text-align:right;font-size:14px;font-weight:500;font-variant-numeric:tabular-nums}
+
+/* ── M 端(断点与主站一致 768px):柱形图/表格框内横滑,双栏改单栏 ── */
+/* 窄桌面(768-1080):分项卡名字列自适应,避免中间宽度溢出 */
+@media(max-width:1080px){
+  .drow .nm2{width:auto;flex:1}
+}
+@media(max-width:768px){
+  .aa-head{flex-wrap:wrap}
+  .aa-head .ar{margin-left:auto}
+  .iq-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .iq-scroll .iq-chart{min-width:880px}
+  /* 完整排行 M 端:行情式行列表(参考 arena 手机版)——行=排名/名称/大分数+较近期,整宽趋势条,点行展开其余指标 */
+  .iq-deskboard{display:none}
+  .iq-cards{display:block;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .iqm2-head{display:flex;justify-content:space-between;padding:11px 16px;font-size:12px;color:var(--ink3);background:var(--bg2);border-bottom:1px solid var(--line)}
+  .iqm2{border-bottom:1px solid var(--line);padding:13px 16px 14px}
+  .iqm2:last-child{border-bottom:none}
+  .iqm2 .r2{display:flex;align-items:center;gap:10px;cursor:pointer}
+  .iqm2 .cvr{width:13px;height:13px;color:var(--ink3);flex:none;transition:transform .15s}
+  .iqm2 .cvr.open{transform:rotate(90deg)}
+  .iqm2 .rk{width:20px;text-align:center;color:var(--ink2);font-size:13px;font-weight:500;flex:none;font-variant-numeric:tabular-nums}
+  .iqm2 .qn{flex:1;min-width:0}
+  .iqm2 .n1{display:block;font-weight:600;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .iqm2 .qv{text-align:right;flex:none}
+  .iqm2 .qv .p{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+  .iqm2 .hm30{display:flex;width:100%;height:16px;margin-top:11px}
+  .iqm2 .ext{margin-top:12px;margin-left:53px;border-top:1px solid var(--line);padding-top:12px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 16px}
+  .iqm2 .ext .ml{display:block;font-size:11.5px;color:var(--ink3)}
+  .iqm2 .ext .mv{display:block;font-size:15px;font-weight:500;margin-top:2px;font-variant-numeric:tabular-nums}
+  .leaders{grid-template-columns:minmax(0,1fr)}
+  .dims{grid-template-columns:minmax(0,1fr)}
+  .drow{gap:10px}
+  .drow .nm2{font-size:13px}
+  .drow .tk{width:96px}
+}
