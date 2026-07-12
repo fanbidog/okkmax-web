@@ -35,7 +35,7 @@ Two independent tracks, cross-checked — so choosing a relay provider becomes r
 ## Features
 
 - 🏆 **Provider rankings**: composite score leaderboard (purity × availability × speed), filterable by model, covering the Claude / GPT / Gemini lineups
-- 🧠 **Model IQ leaderboard**: daily-synced capability scores for mainstream LLMs (Claude / Codex / GPT / Gemini …) — degradation radar with 30-day trends, per-suite rankings (reasoning / coding / tool-calling), one-tap image export
+- 🧠 **Model IQ leaderboard**: tracks capability scores of mainstream LLMs (Claude / Codex / GPT / Gemini) against each model's own baseline, so quiet degradation shows up; 30-day trends, per-suite rankings (reasoning / coding / tool calling), exportable charts
 - 🔍 **Purity check**: thinking-signature-based authenticity verification with three-tier verdicts (official / mixed / questionable) — catches silent model swaps
 - 📈 **Uptime monitoring**: minute-level continuous probing per provider and group, with 90m / 24h / 7d / 30d uptime and latency trends
 - 💬 **Review community**: ratings, comments, pros/cons tags — one person, one vote, real experience
@@ -54,6 +54,11 @@ Two independent tracks, cross-checked — so choosing a relay provider becomes r
 |              Uptime monitoring                |              Provider detail       |
 | :-------------------------------------------: | :--------------------------------: |
 | ![Uptime](assets/screenshots/availability.png) | ![Detail](assets/screenshots/station.png) |
+
+|              Model IQ leaderboard              |
+| :--------------------------------------------: |
+| ![Model IQ leaderboard](assets/screenshots/iq.png) |
+
 
 ## Quick Start (self-hosting)
 
