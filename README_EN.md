@@ -34,16 +34,17 @@ Two independent tracks, cross-checked — so choosing a relay provider becomes r
 
 ## Features
 
-- 🏆 **Provider rankings**: composite score leaderboard (purity × availability × speed), filterable by model, covering the Claude / GPT / Gemini lineups
+- 🏆 **Provider rankings & comparison**: sorted by uptime by default, with side-by-side purity tier, model coverage, pricing and payment/service terms; filterable by model, covering the Claude / GPT / Gemini lineups
 - 🧠 **Model IQ leaderboard**: tracks capability scores of mainstream LLMs (Claude / Codex / GPT / Gemini) against each model's own baseline, so quiet degradation shows up; 30-day trends, per-suite rankings (reasoning / coding / tool calling), exportable charts
-- 🔍 **Purity check**: thinking-signature-based authenticity verification with three-tier verdicts (official / mixed / questionable) — catches silent model swaps
+- 🔍 **Purity check**: thinking-signature-based authenticity verification with three-tier verdicts (official / mixed / questionable) — catches silent model swaps; every check has a publicly viewable report page with the test time and per-item results
 - 📈 **Uptime monitoring**: minute-level continuous probing per provider and group, with 90m / 24h / 7d / 30d uptime and latency trends
 - 💬 **Review community**: ratings, comments, pros/cons tags — one person, one vote, real experience
 - 🧪 **Bring-your-own-key testing**: paste an endpoint and key to test any provider instantly; keys are used once and discarded, never stored
 - 💰 **Price comparison**: input/output prices per model per provider at a glance; price changes are logged automatically as provider events
-- 📢 **Provider events**: price changes, model additions/removals, purity tier changes — auto-generated event feed
+- 📢 **Provider events**: price changes, model additions/removals, purity tier changes — auto-generated event feed, with RSS
 - 🌍 **i18n**: Chinese / English, with pre-translated content
-- 🎁 **Points system**: earn points from check-ins, tests, and reviews
+- 🎁 **Points & shop**: earn points from check-ins, tests, and reviews; redeem in the points shop, with redeem codes and invites
+- 🛠️ **Tools**: [Codex quota reset log](https://www.okkmax.com/tools/codex-resets) (reset calendar and interval stats), [Codex skins](https://www.okkmax.com/tools/skins) (UI palette + wallpaper, one command to apply)
 
 ## Screenshots
 
@@ -150,6 +151,6 @@ The key is used only for that single test and then discarded — never written t
 
 **Find this useful? Give it a ⭐ and help more people avoid the bad relays.**
 
-[Website](https://www.okkmax.com) · [Rankings](https://www.okkmax.com/list) · [Uptime](https://www.okkmax.com/availability) · [Submit a provider](https://www.okkmax.com/submit)
+[Website](https://www.okkmax.com) · [Rankings](https://www.okkmax.com/list) · [Model IQ](https://www.okkmax.com/tools/iq) · [Uptime](https://www.okkmax.com/availability) · [Submit a provider](https://www.okkmax.com/submit)
 
 </div>
