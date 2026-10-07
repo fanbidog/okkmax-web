@@ -19,6 +19,22 @@
 
 </div>
 
+## ❤️赞助商
+
+> [想出现在这里?](mailto:hello@okkmax.com)
+
+<details open>
+<summary>点击折叠</summary>
+
+<table>
+<tr>
+<td width="180"><a href="https://www.packyapi.ai"><img src="assets/partners/logos/packycode.png" alt="PackyCode" width="150"></a></td>
+<td>感谢 PackyCode 赞助了本项目!PackyCode 是一家稳定、高效的 API 中转服务商,提供 Claude Code、Codex、Gemini 等多种中转服务。点击 <a href="https://www.packyapi.ai">此链接</a> 了解详情。</td>
+</tr>
+</table>
+
+</details>
+
 ---
 
 ## 为什么做 OkkMax?

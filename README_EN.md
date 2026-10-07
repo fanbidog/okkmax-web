@@ -19,6 +19,22 @@ English | [中文](README.md)
 
 </div>
 
+## ❤️ Sponsors
+
+> [Want to appear here?](mailto:hello@okkmax.com)
+
+<details open>
+<summary>Click to collapse</summary>
+
+<table>
+<tr>
+<td width="180"><a href="https://www.packyapi.ai"><img src="assets/partners/logos/packycode.png" alt="PackyCode" width="150"></a></td>
+<td>Thanks to PackyCode for sponsoring this project! PackyCode is a stable and efficient API relay provider, offering Claude Code, Codex, Gemini and more. Visit <a href="https://www.packyapi.ai">this link</a> to learn more.</td>
+</tr>
+</table>
+
+</details>
+
 ---
 
 ## Why OkkMax?
