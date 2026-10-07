@@ -21,7 +21,7 @@
 
 ## ❤️赞助商
 
-> [想出现在这里?](mailto:hello@okkmax.com)
+> [想出现在这里?](https://www.okkmax.com/about)
 
 <details open>
 <summary>点击折叠</summary>

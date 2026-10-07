@@ -21,7 +21,7 @@ English | [中文](README.md)
 
 ## ❤️ Sponsors
 
-> [Want to appear here?](mailto:hello@okkmax.com)
+> [Want to appear here?](https://www.okkmax.com/about)
 
 <details open>
 <summary>Click to collapse</summary>
