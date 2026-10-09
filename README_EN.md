@@ -31,6 +31,10 @@ English | [中文](README.md)
 <td width="180"><a href="https://www.packyapi.ai"><img src="assets/partners/logos/packycode.png" alt="PackyCode" width="150"></a></td>
 <td>Thanks to PackyCode for sponsoring this project! PackyCode is a stable and efficient API relay provider, offering Claude Code, Codex, Gemini and more. Visit <a href="https://www.packyapi.ai">this link</a> to learn more.</td>
 </tr>
+<tr>
+<td width="180"><a href="https://omniakey.com"><img src="assets/partners/logos/omniakey.png" alt="OmniaKey" width="150"></a></td>
+<td>Thanks to OmniaKey for sponsoring this project! OmniaKey is an all-modality AI API relay platform built for developers: one API key covers text, image, video and audio. It offers GPT, Claude, Gemini, Grok, GLM, Qwen and other mainstream LLMs; image models such as GPT-image-2.5, Nanobanna 2.1 and Seedream 5.0 Pro; video models such as Seedance 2.5, Wan3, Kling and MiniMaxH3; and Suno AI music generation. Visit <a href="https://omniakey.com">this link</a> to learn more.</td>
+</tr>
 </table>
 
 </details>
