@@ -31,10 +31,6 @@
 <td width="180"><a href="https://www.packyapi.ai"><img src="assets/partners/logos/packycode.png" alt="PackyCode" width="150"></a></td>
 <td>感谢 PackyCode 赞助了本项目!PackyCode 是一家稳定、高效的 API 中转服务商,提供 Claude Code、Codex、Gemini 等多种中转服务。点击 <a href="https://www.packyapi.ai">此链接</a> 了解详情。</td>
 </tr>
-<tr>
-<td width="180"><a href="https://omniakey.com"><img src="assets/partners/logos/omniakey.png" alt="OmniaKey" width="150"></a></td>
-<td>感谢 OmniaKey 赞助了本项目!OmniaKey 是专为开发者打造的全模态 AI API 中转平台,一套 API Key 覆盖文本、图片、视频、音频:GPT、Claude、Gemini、Grok、GLM、Qwen 等主流大模型,GPT-image-2.5、Nanobanna 2.1、Seedream 5.0 Pro 等图像模型,Seedance 2.5、Wan3、Kling、MiniMaxH3 等视频模型,以及 Suno AI 音乐生成。点击 <a href="https://omniakey.com">此链接</a> 了解详情。</td>
-</tr>
 </table>
 
 </details>
