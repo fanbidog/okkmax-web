@@ -1,27 +1,30 @@
 <div align="center">
 
-# OkkMax
+# OkkMax: AI API Relay Review and Leaderboard
 
-### Find AI API relay providers you can trust — authenticity checks · uptime monitoring · real user reviews
+### Purity checks, downgrade detection, uptime monitoring and real reviews for Claude, GPT and Gemini relay providers
 
+[![Website](https://img.shields.io/badge/website-www.okkmax.com-2563eb.svg)](https://www.okkmax.com/en)
 [![License](https://img.shields.io/badge/license-Non--Commercial-orange.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma-336791?logo=postgresql&logoColor=white)](https://www.prisma.io)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/fanbidog/okkmax-web/pulls)
 [![Stars](https://img.shields.io/github/stars/fanbidog/okkmax-web?style=social)](https://github.com/fanbidog/okkmax-web/stargazers)
 
-### 🌐 Official website: **[www.okkmax.com](https://www.okkmax.com)**
+**[Visit www.okkmax.com](https://www.okkmax.com/en)**
 
-An independent, third-party review and directory platform for AI API relay providers.
-Every ranking score comes from automated probes; the methodology is public and auditable, and no fee can influence a ranking.
+An independent, third-party review and directory for AI API relay providers.
+Every ranking score comes from automated probes, the methodology is public and auditable, and no fee can change a ranking.
 
 English | [中文](README.md)
 
 </div>
 
-## ❤️ Sponsors
+![OkkMax home](assets/screenshots/home.png)
 
-> [Want to appear here?](https://www.okkmax.com/about)
+## Sponsors
+
+> [Want to appear here?](https://www.okkmax.com/en/about)
 
 <details open>
 <summary>Click to collapse</summary>
@@ -29,11 +32,7 @@ English | [中文](README.md)
 <table>
 <tr>
 <td width="180"><a href="https://www.packyapi.ai"><img src="assets/partners/logos/packycode.png" alt="PackyCode" width="150"></a></td>
-<td>Thanks to PackyCode for sponsoring this project! PackyCode is a stable and efficient API relay provider, offering Claude Code, Codex, Gemini and more. Visit <a href="https://www.packyapi.ai">this link</a> to learn more.</td>
-</tr>
-<tr>
-<td width="180"><a href="https://omniakey.com"><img src="assets/partners/logos/omniakey.png" alt="OmniaKey" width="150"></a></td>
-<td>Thanks to OmniaKey for sponsoring this project! OmniaKey is an all-modality AI API relay platform built for developers: one API key covers text, image, video and audio. It offers GPT, Claude, Gemini, Grok, GLM, Qwen and other mainstream LLMs; image models such as GPT-image-2.5, Nanobanna 2.1 and Seedream 5.0 Pro; video models such as Seedance 2.5, Wan3, Kling and MiniMaxH3; and Suno AI music generation. Visit <a href="https://omniakey.com">this link</a> to learn more.</td>
+<td>Thanks to PackyCode for sponsoring this project. PackyCode is a stable, efficient API relay provider offering Claude Code, Codex, Gemini and more. See <a href="https://www.packyapi.ai">this link</a> for details.</td>
 </tr>
 </table>
 
@@ -41,36 +40,105 @@ English | [中文](README.md)
 
 ---
 
-## Why OkkMax?
+## Core modules
 
-The AI API relay market is a mixed bag: some providers route to genuine official backends, some silently swap Claude for cheaper models (quality downgrades), and some are online today and gone tomorrow. There's no way to verify before you pay — you only find out after falling into the pit.
+OkkMax answers the questions you have before buying from a relay provider: is it really Claude, is it up right now, and how has it worked out for other people.
 
-**OkkMax keeps watch on two independent tracks:**
+| Module | What it answers | Link |
+| --- | --- | --- |
+| Provider ranking | Compare purity tier, uptime, speed, price, model coverage and payment terms side by side; sort by recommended, newest, uptime or price | [AI relay ranking](https://www.okkmax.com/en/list) |
+| Model boards | For each model, which providers offer it, at what price and with what uptime | [Model boards](https://www.okkmax.com/en/model) |
+| Purity check | Detects providers that swap Claude for a cheaper model; every check has a public report page | [Run a check on the home page](https://www.okkmax.com/en) |
+| Uptime monitoring | Continuous probing per provider and group, with 90-minute, 24-hour, 7-day and 30-day uptime and latency trends | [Uptime monitoring](https://www.okkmax.com/en/availability) |
+| Model IQ leaderboard | Capability scores of mainstream models, synced daily against each model's own baseline, so you can see who is quietly getting dumber | [Model IQ](https://www.okkmax.com/en/tools/iq) |
+| Review community | Real user ratings, reviews and pros/cons tags, covering support, after-sales and top-up experience that probes cannot measure | [Reviews](https://www.okkmax.com/en/reputation) |
+| Agent access | Let AI agents query the review data directly through MCP, Skills and llms.txt | [Developers and AI agents](https://www.okkmax.com/developers) |
 
-- **Automated objective testing**: scheduled probes using each provider's own account — authenticity verification (based on Anthropic thinking signatures, which cannot be forged), uptime, response latency, and pricing. Data flows straight into the database; nobody can hand-edit it.
-- **Real user reviews**: ratings, comments and pros/cons tags from actual users, covering what probes can't measure (support, refunds, top-up experience).
+## Who it is for
 
-Two independent tracks, cross-checked — so choosing a relay provider becomes reading data instead of gambling.
+- **Developers choosing a Claude, GPT or Gemini relay provider**: find out which providers run the real model, which is cheaper and which is more stable.
+- **People already using a relay and suspecting a downgrade**: verify whether the model was swapped, or check recent uptime.
+- **Relay operators**: get your provider listed, or request a re-test if you dispute a score.
+- **People who work with AI agents**: let Claude Code, Codex, Cursor and similar tools look up relay providers for you.
+
+## Why OkkMax
+
+AI API relay providers vary widely. Some route through genuine official channels, some quietly swap Claude for a cheaper model (commonly called downgrading or model swapping), and some disappear overnight. You cannot inspect the goods before buying, and you only find out after you have been burned.
+
+OkkMax uses two independent tracks:
+
+- **Objective machine probing**: scheduled probes through each provider's own account, covering authenticity (based on Anthropic's thinking signature, which cannot be forged), uptime, latency and price. Data is written to the database automatically and cannot be edited by hand.
+- **Real user reviews**: ratings, reviews and pros/cons tags from real users, covering what probes cannot see.
+
+The two tracks are counted separately and complement each other, turning provider selection from a gamble into a data-driven choice.
 
 ## Features
 
-- 🏆 **Provider rankings & comparison**: sorted by uptime by default, with side-by-side purity tier, model coverage, pricing and payment/service terms; filterable by model, covering the Claude / GPT / Gemini lineups
-- 🧠 **Model IQ leaderboard**: tracks capability scores of mainstream LLMs (Claude / Codex / GPT / Gemini) against each model's own baseline, so quiet degradation shows up; 30-day trends, per-suite rankings (reasoning / coding / tool calling), exportable charts
-- 🔍 **Purity check**: thinking-signature-based authenticity verification with three-tier verdicts (official / mixed / questionable) — catches silent model swaps; every check has a publicly viewable report page with the test time and per-item results
-- 📈 **Uptime monitoring**: minute-level continuous probing per provider and group, with 90m / 24h / 7d / 30d uptime and latency trends
-- 💬 **Review community**: ratings, comments, pros/cons tags — one person, one vote, real experience
-- 🧪 **Bring-your-own-key testing**: paste an endpoint and key to test any provider instantly; keys are used once and discarded, never stored
-- 💰 **Price comparison**: input/output prices per model per provider at a glance; price changes are logged automatically as provider events
-- 📢 **Provider events**: price changes, model additions/removals, purity tier changes — auto-generated event feed, with RSS
-- 🌍 **i18n**: Chinese / English, with pre-translated content
-- 🎁 **Points & shop**: earn points from check-ins, tests, and reviews; redeem in the points shop, with redeem codes and invites
-- 🛠️ **Tools**: [Codex quota reset log](https://www.okkmax.com/tools/codex-resets) (reset calendar and interval stats), [Codex skins](https://www.okkmax.com/tools/skins) (UI palette + wallpaper, one command to apply)
+**Ranking and comparison**
+
+- The provider ranking defaults to a composite score built from uptime and speed; the home and ranking pages can also sort by recommended, newest, uptime or price
+- Comparison covers purity tier, model coverage, price, payment and service terms, filterable by model, across the whole Claude, GPT and Gemini lineup
+- Model boards: one page per model, listing the providers that offer it with price and uptime
+- Mainland China access check: providers whose official site is unreachable from mainland China are labelled "access issue" and ranked lower
+- Price comparison: input and output prices per model per provider at a glance; price changes are logged automatically as provider events
+
+**Checks and monitoring**
+
+- Purity check: authenticity verification based on the thinking signature, with three tiers (official channel, mixed channel, source in doubt), catching downgrades and model swaps
+- Check report pages: every check produces a publicly accessible report with the check time and itemized results, open to search engine indexing
+- Uptime monitoring: minute-level continuous probing with 90-minute, 24-hour, 7-day and 30-day uptime and latency trends; desktop offers card and table views, mobile uses cards
+- Bring-your-own-key testing: paste an endpoint and key to test any provider instantly; keys are used once and discarded, never stored
+
+**Data and tools**
+
+- Model IQ leaderboard: capability scores for Claude, Codex, GPT and Gemini synced daily, with a 30-day trend and sub-rankings for reasoning, coding and tool use; charts can be exported
+- AI API speed test: supports both the Messages and Responses API formats
+- Codex quota reset log: reset calendar and interval statistics
+- Codex skins: UI palette plus wallpaper, applied with one command
+- Provider events: price changes, model additions and removals, and purity tier changes, auto-generated as an event feed with RSS
+
+**Community and accounts**
+
+- Review community: ratings, comments and pros/cons tags, one person one vote
+- Points and shop: earn points from check-ins, tests and reviews, redeem them in the points shop, with invites supported
+- Bilingual: the English site lives on its own `/en` path with pre-translated content
+
+## For AI agents
+
+OkkMax review data can be read directly by AI agents, anonymously and read-only, with no sign-up. Setup instructions per client are on [Developers and AI agent access](https://www.okkmax.com/developers), covering Claude Code, Codex and Cursor.
+
+**MCP server**
+
+- Address: `https://www.okkmax.com/mcp` (Streamable HTTP, no authentication)
+- Six read-only tools:
+
+| Tool | Purpose |
+| --- | --- |
+| `search_stations` | Search relay providers by name, domain, URL or model |
+| `search_models` | Look up the canonical slug of a model |
+| `get_model_board` | View the provider board for a given model |
+| `find_cheapest_relay` | Find the lowest-priced provider under conditions such as a minimum uptime |
+| `get_station` | Read the full report for one provider, optionally scoped to a model and group |
+| `explain_methodology` | Explain how scores and purity tiers are determined |
+
+**Skills**
+
+- `okkmax-find-relay`: pick and compare relay providers for a model
+- `okkmax-check-relay`: verify whether a specific relay provider is trustworthy
+
+**Text entry points for agents**
+
+- [llms.txt](https://www.okkmax.com/llms.txt) and [llms-full.txt](https://www.okkmax.com/llms-full.txt)
+- A Markdown page for every provider and every model: `/station/<slug>.md`, `/model/<slug>.md`
+- [Methodology](https://www.okkmax.com/methodology.md)
+
+The MCP and Skills plugin package is published separately at [Okkmass/okkmax-agent-plugin](https://github.com/Okkmass/okkmax-agent-plugin) under the MIT license.
 
 ## Screenshots
 
-|              Home · instant test              |              Rankings              |
-| :-------------------------------------------: | :--------------------------------: |
-|  ![Home](assets/screenshots/home.png)         | ![Rankings](assets/screenshots/ranking.png) |
+|              Home and instant test              |              Provider ranking              |
+| :---------------------------------------------: | :----------------------------------------: |
+|  ![Home](assets/screenshots/home.png)           | ![Ranking](assets/screenshots/ranking.png) |
 
 |              Uptime monitoring                |              Provider detail       |
 | :-------------------------------------------: | :--------------------------------: |
@@ -80,6 +148,11 @@ Two independent tracks, cross-checked — so choosing a relay provider becomes r
 | :--------------------------------------------: |
 | ![Model IQ leaderboard](assets/screenshots/iq.png) |
 
+## What we do not do
+
+- We do not accept fees that affect rankings. Every score comes from automated probes; commercial arrangements such as referral links never change probe data or tier verdicts.
+- We do not vouch for any relay provider. Checks, scores and rankings are an objective presentation of a fixed methodology, not a recommendation or endorsement; whether to use a provider is your own decision.
+- We do not store your API key. A key used in a test serves that single check only, and is never written to the database or logs.
 
 ## Quick Start (self-hosting)
 
@@ -113,15 +186,29 @@ npm run ingest  # manually ingest a provider (format: scripts/seed.example.json)
 npm run score   # compute scores and rankings (run on a cron)
 ```
 
-## Architecture notes
+### Architecture notes
 
-This repository is OkkMax's website and data presentation layer (Next.js 16 full-stack + Prisma + PostgreSQL). To run a complete review platform of your own you'll also need:
+This repository is OkkMax's website and data presentation layer (Next.js 16 full-stack + Prisma + PostgreSQL). To run a complete review platform of your own you will also need:
 
 - **A detection backend**: performs one-off provider tests, wired up via `DETECT_BASE_URL`; when unset, the bring-your-own-key test returns 501 and everything else works normally
-- **An uptime monitor**: continuously collects uptime/latency and writes into this app's database (`UptimeSnapshot` and friends)
+- **An uptime monitor**: continuously collects uptime and latency and writes into this app's database (`UptimeSnapshot` and related tables)
 - **Scoring configuration**: weights and coefficients are set via `SCORE_*` environment variables, see [.env.example](.env.example)
 
 ## FAQ
+
+<details>
+<summary><strong>How do I choose a Claude relay provider?</strong></summary>
+
+Start with the purity tier to confirm the provider runs a genuine official channel, then compare uptime, latency and price. On the [provider ranking](https://www.okkmax.com/en/list) you can filter by model, and on the [model boards](https://www.okkmax.com/en/model) you can compare providers directly for a single model.
+
+</details>
+
+<details>
+<summary><strong>How can I tell whether a relay downgraded or swapped the model?</strong></summary>
+
+Look at the purity check result. For Claude, OkkMax verifies the thinking signature and can identify providers that replace Claude with a cheaper model. The model IQ leaderboard compares each model against its own capability baseline, showing whether the model itself has weakened.
+
+</details>
 
 <details>
 <summary><strong>Can providers pay for a better ranking?</strong></summary>
@@ -133,12 +220,19 @@ No. All ranking scores come from automated probes and the methodology is public;
 <details>
 <summary><strong>How does the purity check work?</strong></summary>
 
-It relies on the thinking signature returned by Anthropic's official backend — a cryptographic marker that cannot be forged. A valid signature plus behaviour consistent with the official API confirms a genuine official channel. GPT / Gemini have no equivalent signature, so they only get protocol-level tests (connectivity, speed, uptime). See "Methodology" on the website.
+It relies on the thinking signature returned by Anthropic's official backend, a cryptographic marker that cannot be forged. A valid signature plus behaviour consistent with the official API confirms a genuine official channel. GPT and Gemini have no equivalent signature, so they only get protocol-level tests (connectivity, speed, uptime). See the [methodology](https://www.okkmax.com/methodology.md).
 
 </details>
 
 <details>
-<summary><strong>I run a relay provider — how do I get listed?</strong></summary>
+<summary><strong>How do I let an AI agent look up relay providers for me?</strong></summary>
+
+Connect OkkMax's MCP server and Skills in Claude Code, Codex or Cursor, then ask the agent directly, for example to recommend providers for a model or to verify a specific one. Steps are on [Developers and AI agent access](https://www.okkmax.com/developers).
+
+</details>
+
+<details>
+<summary><strong>I run a relay provider. How do I get listed?</strong></summary>
 
 Submit your provider at [www.okkmax.com/submit](https://www.okkmax.com/submit); if you dispute a score you can request a re-test.
 
@@ -147,7 +241,7 @@ Submit your provider at [www.okkmax.com/submit](https://www.okkmax.com/submit); 
 <details>
 <summary><strong>Is my API key safe when I run a test?</strong></summary>
 
-The key is used only for that single test and then discarded — never written to the database or logs. We recommend using a dedicated test key.
+The key is used only for that single test and then discarded, never written to the database or logs. We recommend using a dedicated test key.
 
 </details>
 
@@ -169,8 +263,6 @@ The key is used only for that single test and then discarded — never written t
 
 <div align="center">
 
-**Find this useful? Give it a ⭐ and help more people avoid the bad relays.**
-
-[Website](https://www.okkmax.com) · [Rankings](https://www.okkmax.com/list) · [Model IQ](https://www.okkmax.com/tools/iq) · [Uptime](https://www.okkmax.com/availability) · [Submit a provider](https://www.okkmax.com/submit)
+[Website](https://www.okkmax.com/en) | [Ranking](https://www.okkmax.com/en/list) | [Model boards](https://www.okkmax.com/en/model) | [Model IQ](https://www.okkmax.com/en/tools/iq) | [Uptime](https://www.okkmax.com/en/availability) | [Developers](https://www.okkmax.com/developers) | [Submit a provider](https://www.okkmax.com/submit)
 
 </div>
