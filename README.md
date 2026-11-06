@@ -20,8 +20,6 @@
 
 </div>
 
-![OkkMax 首页](assets/screenshots/home.png)
-
 ## 赞助商
 
 > [想出现在这里？](https://www.okkmax.com/about)

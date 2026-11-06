@@ -20,8 +20,6 @@ English | [中文](README.md)
 
 </div>
 
-![OkkMax home](assets/screenshots/home.png)
-
 ## Sponsors
 
 > [Want to appear here?](https://www.okkmax.com/en/about)
