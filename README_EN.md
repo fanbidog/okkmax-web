@@ -4,7 +4,7 @@
 
 ### Find AI API relay providers you can trust — authenticity checks · uptime monitoring · real user reviews
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Non--Commercial-orange.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma-336791?logo=postgresql&logoColor=white)](https://www.prisma.io)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/fanbidog/okkmax-web/pulls)
@@ -163,7 +163,7 @@ The key is used only for that single test and then discarded — never written t
 
 ## License
 
-[MIT](LICENSE) © OkkMax
+[OkkMax Non-Commercial License](LICENSE) © OkkMax
 
 ---
 

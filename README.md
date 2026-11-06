@@ -4,7 +4,7 @@
 
 ### 发现好用的 AI 中转站 —— 纯度检测 · 可用性监测 · 真实口碑
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Non--Commercial-orange.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Prisma-336791?logo=postgresql&logoColor=white)](https://www.prisma.io)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/fanbidog/okkmax-web/pulls)
@@ -159,7 +159,7 @@ Key 仅用于发起当次检测,用完即弃——不写数据库、不留日志
 
 ## License
 
-[MIT](LICENSE) © OkkMax
+[OkkMax Non-Commercial License](LICENSE) © OkkMax
 
 ---
 
