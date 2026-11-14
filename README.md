@@ -20,6 +20,20 @@
 
 </div>
 
+## 界面预览
+
+|               首页与自测入口               |               站点排行               |
+| :-----------------------------------------: | :----------------------------------: |
+|  ![首页](assets/screenshots/home.png)       | ![排行](assets/screenshots/ranking.png) |
+
+|               可用性监测                |               站点详情               |
+| :-------------------------------------: | :----------------------------------: |
+| ![可用性](assets/screenshots/availability.png) | ![详情](assets/screenshots/station.png) |
+
+|              模型智商榜              |
+| :----------------------------------: |
+| ![模型智商榜](assets/screenshots/iq.png) |
+
 ## 赞助商
 
 > [想出现在这里？](https://www.okkmax.com/about)
@@ -131,20 +145,6 @@ OkkMax 的测评数据可以被 AI Agent 直接读取，匿名、只读，不需
 - [评测方法](https://www.okkmax.com/methodology.md)
 
 MCP 与 Skills 的插件包单独发布在 [Okkmass/okkmax-agent-plugin](https://github.com/Okkmass/okkmax-agent-plugin)，采用 MIT 许可。
-
-## 界面预览
-
-|               首页与自测入口               |               站点排行               |
-| :-----------------------------------------: | :----------------------------------: |
-|  ![首页](assets/screenshots/home.png)       | ![排行](assets/screenshots/ranking.png) |
-
-|               可用性监测                |               站点详情               |
-| :-------------------------------------: | :----------------------------------: |
-| ![可用性](assets/screenshots/availability.png) | ![详情](assets/screenshots/station.png) |
-
-|              模型智商榜              |
-| :----------------------------------: |
-| ![模型智商榜](assets/screenshots/iq.png) |
 
 ## 我们不做什么
 
