@@ -32,6 +32,10 @@ English | [中文](README.md)
 <td width="180"><a href="https://www.packyapi.ai"><img src="assets/partners/logos/packycode.png" alt="PackyCode" width="150"></a></td>
 <td>Thanks to PackyCode for sponsoring this project. PackyCode is a stable, efficient API relay provider offering Claude Code, Codex, Gemini and more. See <a href="https://www.packyapi.ai">this link</a> for details.</td>
 </tr>
+<tr>
+<td width="180"><a href="https://9527.codes/"><img src="assets/partners/logos/9527code.png" alt="9527CODE" width="150"></a></td>
+<td>Thanks to 9527CODE for sponsoring this project. 9527CODE is an AI relay platform for teams and heavy users, offering Claude Code, Codex and other mainstream models, with an emphasis on route quality and long-term stability. It has been running for a year with 99.9% service stability, and provides 7×24 human technical support. Register through <a href="https://9527.codes/">this project's link</a>; new users can ask customer service for trial credit, and referral cashback has no cap.</td>
+</tr>
 </table>
 
 </details>

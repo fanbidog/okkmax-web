@@ -46,6 +46,10 @@
 <td width="180"><a href="https://www.packyapi.ai"><img src="assets/partners/logos/packycode.png" alt="PackyCode" width="150"></a></td>
 <td>感谢 PackyCode 赞助了本项目！PackyCode 是一家稳定、高效的 API 中转服务商，提供 Claude Code、Codex、Gemini 等多种中转服务。点击 <a href="https://www.packyapi.ai">此链接</a> 了解详情。</td>
 </tr>
+<tr>
+<td width="180"><a href="https://9527.codes/"><img src="assets/partners/logos/9527code.png" alt="9527CODE" width="150"></a></td>
+<td>感谢 9527CODE 赞助本项目。9527CODE 是面向企业和重度用户的 AI 中转平台，提供 Claude Code、Codex 等主流模型的中转服务，主打线路质量与长期稳定，已稳定运营一年，服务稳定性 99.9%，提供 7×24 小时人工技术支持。通过<a href="https://9527.codes/">本项目专属链接</a>注册，新用户可联系客服领取体验额度，邀请返现不设上限。</td>
+</tr>
 </table>
 
 </details>
